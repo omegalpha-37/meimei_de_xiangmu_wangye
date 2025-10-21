@@ -1,0 +1,15 @@
+{
+  "name": "plant-story-backend",
+  "version": "1.0.0",
+  "description": "植拼物语网站后端",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "keywords": ["plants", "website", "express"],
+  "author": "Your Name",
+  "license": "MIT"
+}

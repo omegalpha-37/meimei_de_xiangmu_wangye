@@ -4,6 +4,7 @@ const path = require('path');
 const commentRoutes = require('./routes/comments');
 
 const app = express();
+const PORT = process.env.PORT || 3000;
 
 // 手动 CORS 中间件
 app.use((req, res, next) => {
@@ -32,19 +33,13 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index1.html'));
 });
 
+// 启动服务器
+app.listen(PORT, () => {
+    console.log(`服务器运行在 http://localhost:${PORT}`);
+});
+
 // 错误处理中间件
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ error: '服务器内部错误' });
 });
-
-// Vercel 需要导出 app 而不是监听端口
-module.exports = app;
-
-// 本地开发时仍然监听端口
-if (require.main === module) {
-    const PORT = process.env.PORT || 3000;
-    app.listen(PORT, () => {
-        console.log(`服务器运行在 http://localhost:${PORT}`);
-    });
-}

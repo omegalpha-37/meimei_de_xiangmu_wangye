@@ -18,12 +18,13 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+/*
+//这部分的注释用于本地调试
 // 静态文件服务 - 指向 public 文件夹
 app.use(express.static(path.join(__dirname, 'public'), {
     index: 'index1.html'
 }));
-
+*/
 // API 路由
 app.use('/api/comments', commentRoutes);
 

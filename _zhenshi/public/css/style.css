@@ -1,338 +1,440 @@
 <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Microsoft YaHei', sans-serif;
-        }
-        
-        body {
-            background-color: #f8f9fa;
-            color: #333;
-            line-height: 1.6;
-            font-family: "微软雅黑 Light";
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-        
-        /* 头部样式 */
-        header {
-            background-color: #2d5e3b;
-            color: white;
-            padding: 15px 0;
-        }
-        
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Microsoft YaHei', sans-serif;
+    }
+    
+    body {
+        background-color: #f8f9fa;
+        color: #333;
+        line-height: 1.6;
+        font-family: "微软雅黑 Light";
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 15px;
+    }
+    
+    /* 头部样式 */
+    header {
+        background-color: #2d5e3b;
+        color: white;
+        padding: 15px 0;
+    }
+    
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        font-family: "微软雅黑 Light";
+        font-style: normal;
+        text-align: left;
+    }
+    
+    .search-bar {
+        display: flex;
+        width: 100%;
+        max-width: 500px;
+    }
+    
+    .search-bar input {
+        flex: 1;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px 0 0 4px;
+    }
+    
+    .search-bar button {
+        background-color: #a8d5ba;
+        color: #2d5e3b;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+    }
+    
+    /* 导航样式 */
+    nav {
+        background-color: #3a7a4c;
+        padding: 10px 0;
+    }
+    
+    .nav-buttons {
+        display: flex;
+        list-style: none;
+        justify-content: center;
+        font-family: "微软雅黑 Light";
+        gap: 10px;
+    }
+    
+    .nav-btn {
+        background-color: #a8d5ba;
+        color: #2d5e3b;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: all 0.3s;
+        font-weight: bold;
+    }
+    
+    .nav-btn:hover {
+        background-color: #8bc4a1;
+        transform: translateY(-2px);
+    }
+    
+    .nav-btn.active {
+        background-color: #2d5e3b;
+        color: white;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .page-section {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+    }
+    
+    .page-section.active {
+        display: block;
+        opacity: 1;
+    }
+    
+    /* 主要内容区域 */
+    .main-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+        text-align: center;
+    }
+    
+    .card {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        margin: 0 auto;
+    }
+    
+    .card h3 {
+        color: #2d5e3b;
+        margin-bottom: 15px;
+    }
+    
+    .card p {
+        color: #666;
+        margin-bottom: 20px;
+    }
+    
+    .btn {
+        display: inline-block;
+        background-color: #a8d5ba;
+        color: #2d5e3b;
+        padding: 8px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s;
+    }
+    
+    .btn:hover {
+        background-color: #8bc4a1;
+    }
+    
+    /* 客户反馈区域 */
+    .feedback-section {
+        background-color: #e9f4ec;
+        padding: 40px 0;
+        margin: 40px 0;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #2d5e3b;
+    }
+    
+    .feedback-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+    
+    .feedback-card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+    /* 评论样式 */
+    .comment-item {
+        border-bottom: 1px solid #eee;
+        padding: 15px 0;
+    }
+    
+    .comment-item:last-child {
+        border-bottom: none;
+    }
+    
+    .comment-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+    }
+    
+    .comment-author {
+        font-weight: bold;
+        color: #2d5e3b;
+    }
+    
+    .comment-time {
+        color: #999;
+        font-size: 12px;
+    }
+    
+    .comment-content {
+        color: #666;
+        line-height: 1.5;
+    }
+    
+    .no-comments {
+        text-align: center;
+        color: #999;
+        padding: 20px;
+    }
+    
+    /* 评论表单 */
+    .comment-form {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #2d5e3b;
+        font-weight: bold;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    
+    .form-group textarea {
+        height: 80px;
+        resize: vertical;
+    }
+    
+    .submit-btn {
+        background-color: #2d5e3b;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    /* 页脚样式 */
+    footer {
+        background-color: #2d5e3b;
+        color: white;
+        padding: 30px 0 15px;
+        text-align: center;
+    }
+    
+    /* 切换动画 */
+    .slide-left {
+        animation: slideLeft 0.8s ease;
+    }
+    
+    .slide-right {
+        animation: slideRight 0.8s ease;
+    }
+    
+    @keyframes slideLeft {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    @keyframes slideRight {
+        from { transform: translateX(-100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    /* 留言反馈页面样式 */
+    .feedback-form-section {
+        min-height: 70vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 0;
+    }
+    
+    .feedback-form-container {
+        background-color: white;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 600px;
+    }
+    
+    .feedback-form-container h2 {
+        color: #2d5e3b;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 28px;
+    }
+    
+    .back-btn {
+        background-color: #a8d5ba;
+        color: #2d5e3b;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 14px;
+        margin-top: 15px;
+        width: 100%;
+        transition: background-color 0.3s;
+    }
+    
+    .back-btn:hover {
+        background-color: #8bc4a1;
+    }
+
+    @media (max-width: 768px) {
         .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            font-family: "微软雅黑 Light";
-            font-style: normal;
-            text-align: left;
+            flex-direction: column;
+            gap: 15px;
         }
         
         .search-bar {
-            display: flex;
-            width: 100%;
-            max-width: 500px;
+            max-width: 100%;
         }
-        
-        .search-bar input {
-            flex: 1;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px 0 0 4px;
-        }
-        
-        .search-bar button {
-            background-color: #a8d5ba;
-            color: #2d5e3b;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-        }
-        
-        /* 导航样式 */
-        nav {
-            background-color: #3a7a4c;
-            padding: 10px 0;
-        }
-        
-        .nav-buttons {
-            display: flex;
-            list-style: none;
-            justify-content: center;
-            font-family: "微软雅黑 Light";
-            gap: 10px;
-        }
-        
-        .nav-btn {
-            background-color: #a8d5ba;
-            color: #2d5e3b;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.3s;
-            font-weight: bold;
-        }
-        
-        .nav-btn:hover {
-            background-color: #8bc4a1;
-            transform: translateY(-2px);
-        }
-        
-        .nav-btn.active {
-            background-color: #2d5e3b;
-            color: white;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        .page-section {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-        
-        .page-section.active {
-            display: block;
-            opacity: 1;
-        }
-        
-        /* 主要内容区域 */
-        .main-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-	    text-align: center;
-        }
-        
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-	    margin: 0 auto;
-        }
-        
-        .card h3 {
-            color: #2d5e3b;
-            margin-bottom: 15px;
-        }
-        
-        .card p {
-            color: #666;
-            margin-bottom: 20px;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: #a8d5ba;
-            color: #2d5e3b;
-            padding: 8px 20px;
-            border-radius: 4px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #8bc4a1;
-        }
-        
-        /* 客户反馈区域 */
-        .feedback-section {
-            background-color: #e9f4ec;
-            padding: 40px 0;
-            margin: 40px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #2d5e3b;
-        }
-        
-        .feedback-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        
-        .feedback-card {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-        }
-        
-        /* 评论样式 */
-        .comment-item {
-            border-bottom: 1px solid #eee;
-            padding: 15px 0;
-        }
-        
-        .comment-item:last-child {
-            border-bottom: none;
-        }
-        
-        .comment-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
-        
-        .comment-author {
-            font-weight: bold;
-            color: #2d5e3b;
-        }
-        
-        .comment-time {
-            color: #999;
-            font-size: 12px;
-        }
-        
-        .comment-content {
-            color: #666;
-            line-height: 1.5;
-        }
-        
-        .no-comments {
-            text-align: center;
-            color: #999;
-            padding: 20px;
-        }
-        
-        /* 评论表单 */
-        .comment-form {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #2d5e3b;
-            font-weight: bold;
-        }
-        
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        
-        .form-group textarea {
-            height: 80px;
-            resize: vertical;
-        }
-        
-        .submit-btn {
-            background-color: #2d5e3b;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        
-        /* 页脚样式 */
-        footer {
-            background-color: #2d5e3b;
-            color: white;
-            padding: 30px 0 15px;
-            text-align: center;
-        }
-        
-        /* 切换动画 */
-        .slide-left {
-            animation: slideLeft 0.8s ease;
-        }
-        
-        .slide-right {
-            animation: slideRight 0.8s ease;
-        }
-        
-        @keyframes slideLeft {
-            from { transform: translateX(100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        @keyframes slideRight {
-            from { transform: translateX(-100%); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-        
-        /* 留言反馈页面样式 */
-        .feedback-form-section {
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 0;
-        }
-        
-        .feedback-form-container {
-            background-color: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 600px;
-        }
-        
-        .feedback-form-container h2 {
-            color: #2d5e3b;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-        }
-        
-        .back-btn {
-            background-color: #a8d5ba;
-            color: #2d5e3b;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-top: 15px;
-            width: 100%;
-            transition: background-color 0.3s;
-        }
-        
-        .back-btn:hover {
-            background-color: #8bc4a1;
-        }
-		@media (max-width: 768px) {
-		    .header-content {
-		        flex-direction: column;
-		        gap: 15px;
-		    }
-		    
-		    .search-bar {
-		        max-width: 100%;
-		    }
-		}
-    </style>
+    }
+
+    /* 全屏页面样式 */
+    .fullscreen-page {
+        position: relative;
+        min-height: 100vh;
+        background: white;
+        z-index: 10000;
+    }
+    
+    /* 当在植物图鉴页面时隐藏头部导航 */
+    body.plant-library-active header,
+    body.plant-library-active nav {
+        display: none !important;
+    }
+    
+    body.plant-library-active footer {
+        display: block !important;
+    }
+    
+    /* 植物图鉴页面的自定义头部 */
+    .custom-header {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* 确保页脚在植物图鉴页面正常显示 */
+    body.plant-library-active footer {
+        display: block;
+    }
+
+    /* ========== 修复植物图鉴网格布局 ========== */
+    /* 植物图鉴页面专用样式 */
+    #plant-library .plants-grid .main-content {
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+        gap: 30px !important;
+        margin: 40px 0 !important;
+        text-align: left !important;
+    }
+    
+    #plant-library .plant-card {
+        background-color: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    
+    #plant-library .plant-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    #plant-library .plant-image {
+        height: 200px;
+        background: #e9f4ec;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #2d5e3b;
+        margin: -20px -20px 20px -20px;
+        border-radius: 8px 8px 0 0;
+        font-weight: bold;
+    }
+
+    /* 植物分类按钮样式 */
+    .category-btn {
+        background-color: #f0f0f0;
+        color: #333;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .category-btn.active,
+    .category-btn:hover {
+        background-color: #2d5e3b;
+        color: white;
+    }
+
+    /* 修复全屏页面样式 */
+    .fullscreen-page {
+        position: relative;
+        min-height: 100vh;
+        background: white;
+        z-index: 10000;
+    }
+    
+    body.plant-library-active .page-container {
+        position: relative;
+        z-index: 10000;
+    }
+    
+    body.plant-library-active footer {
+        display: block !important;
+        position: relative;
+        z-index: 10001;
+    }
+</style>

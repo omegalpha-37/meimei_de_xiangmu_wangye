@@ -38,7 +38,7 @@
                 <div class="card">
                     <h3>单盆植物</h3>
                     <p>这里将介绍不同植物的基本概念和意义...</p>
-                    <a href="#" class="btn">了解更多</a>
+                    <button class="btn plant-library-btn" style="cursor: pointer;">了解更多</button>
                 </div>
                 
                 <!-- 卡片2 -->
@@ -97,6 +97,116 @@
                     <h3>花卉盆栽</h3>
                     <p>四季花卉，为您的家居增添色彩与生机。</p>
                     <a href="#" class="btn">查看详情</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 植物图鉴页面 - 独立的全屏页面 -->
+    <div id="plant-library" class="page-section fullscreen-page">
+        <!-- 自定义头部（只有返回按钮） -->
+        <div class="custom-header" style="background: #2d5e3b; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="back-to-home-btn" style="background: #a8d5ba; color: #2d5e3b; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                    ← 返回首页
+                </button>
+                <h2 style="margin: 0; color: white;">植物图鉴</h2>
+                <div style="width: 80px;"></div> <!-- 占位，保持对称 -->
+            </div>
+        </div>
+        
+        <!-- 页面内容 -->
+        <div class="container" style="padding-top: 20px;">
+            
+            <!-- 搜索筛选区 -->
+            <div class="search-filter" style="margin-bottom: 30px; text-align: center;">
+                <input type="text" placeholder="搜索植物..." style="padding: 10px; width: 300px; max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+                <button class="btn" style="margin-left: 10px;">搜索</button>
+            </div>
+            
+            <!-- 植物分类导航 -->
+            <div class="plant-categories" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
+                <button class="category-btn active">全部</button>
+                <button class="category-btn">室内植物</button>
+                <button class="category-btn">多肉植物</button>
+                <button class="category-btn">观花植物</button>
+                <button class="category-btn">观叶植物</button>
+            </div>
+            
+            <!-- 植物卡片网格 -->
+            <div class="plants-grid">
+                <div class="main-content">
+                    <!-- 植物1 -->
+                    <div class="card plant-card">
+                        <div class="plant-image" style="height: 200px; background: #e9f4ec; display: flex; align-items: center; justify-content: center; color: #2d5e3b; margin: -20px -20px 20px -20px; border-radius: 8px 8px 0 0;">
+                            <span>绿萝图片</span>
+                        </div>
+                        <h3>绿萝</h3>
+                        <p><strong>科属：</strong>天南星科</p>
+                        <p><strong>习性：</strong>喜阴湿环境，耐阴性强</p>
+                        <p><strong>养护：</strong>每周浇水1-2次，避免阳光直射</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                    
+                    <!-- 植物2 -->
+                    <div class="card plant-card">
+                        <div class="plant-image" style="height: 200px; background: #e9f4ec; display: flex; align-items: center; justify-content: center; color: #2d5e3b; margin: -20px -20px 20px -20px; border-radius: 8px 8px 0 0;">
+                            <span>仙人掌图片</span>
+                        </div>
+                        <h3>仙人掌</h3>
+                        <p><strong>科属：</strong>仙人掌科</p>
+                        <p><strong>习性：</strong>耐旱，喜阳光</p>
+                        <p><strong>养护：</strong>少浇水，需要充足阳光</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                    
+                    <!-- 植物3 -->
+                    <div class="card plant-card">
+                        <div class="plant-image" style="height: 200px; background: #e9f4ec; display: flex; align-items: center; justify-content: center; color: #2d5e3b; margin: -20px -20px 20px -20px; border-radius: 8px 8px 0 0;">
+                            <span>吊兰图片</span>
+                        </div>
+                        <h3>吊兰</h3>
+                        <p><strong>科属：</strong>百合科</p>
+                        <p><strong>习性：</strong>适应性强，喜温暖湿润</p>
+                        <p><strong>养护：</strong>保持土壤湿润，适当光照</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                    
+                    <!-- 植物4 -->
+                    <div class="card plant-card">
+                        <div class="plant-image" style="height: 200px; background: #e9f4ec; display: flex; align-items: center; justify-content: center; color: #2d5e3b; margin: -20px -20px 20px -20px; border-radius: 8px 8px 0 0;">
+                            <span>龟背竹图片</span>
+                        </div>
+                        <h3>龟背竹</h3>
+                        <p><strong>科属：</strong>天南星科</p>
+                        <p><strong>习性：</strong>喜温暖湿润，耐阴</p>
+                        <p><strong>养护：</strong>保持土壤湿润，避免强光</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                
+                    <!-- 植物5 -->
+                    <div class="card plant-card">
+                        <div class="plant-image" style="height: 200px; background: #e9f4ec; display: flex; align-items: center; justify-content: center; color: #2d5e3b; margin: -20px -20px 20px -20px; border-radius: 8px 8px 0 0;">
+                            <span>芦荟图片</span>
+                        </div>
+                        <h3>芦荟</h3>
+                        <p><strong>科属：</strong>百合科</p>
+                        <p><strong>习性：</strong>耐旱，喜阳光</p>
+                        <p><strong>养护：</strong>少浇水，需要充足光照</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                
+                    <!-- 植物6 -->
+                    <div class="card plant-card">
+                        <div class="plant-image" style="height: 200px; background: #e9f4ec; display: flex; align-items: center; justify-content: center; color: #2d5e3b; margin: -20px -20px 20px -20px; border-radius: 8px 8px 0 0;">
+                            <span>虎皮兰图片</span>
+                        </div>
+                        <h3>虎皮兰</h3>
+                        <p><strong>科属：</strong>百合科</p>
+                        <p><strong>习性：</strong>耐阴，适应性强</p>
+                        <p><strong>养护：</strong>少浇水，避免积水</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -6,6 +6,10 @@
   ],
   "routes": [
     {
+      "src": "/",
+      "dest": "/public"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "/index.js"
     },

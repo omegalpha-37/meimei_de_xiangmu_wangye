@@ -27,9 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // 路由
 app.use('/api/comments', commentRoutes);
 
-// 提供前端页面 - 现在指向 public/index1.html
+// 提供前端页面 - 现在指向 public/index.html//修改了这里
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index1.html'));
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // 错误处理中间件

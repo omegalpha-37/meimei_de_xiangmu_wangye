@@ -1,0 +1,21 @@
+{
+  "name": "plant-story-backend",
+  "version": "1.0.0",
+  "description": "植拼物语网站后端",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js",
+	"build": "echo 'No build step needed for Node.js' && exit 0"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": ["plants", "website", "express"],
+  "author": "Your Name",
+  "license": "MIT"
+  
+}

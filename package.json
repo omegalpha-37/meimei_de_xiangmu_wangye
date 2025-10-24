@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "build": "echo '构建完成'",
-    "dev": "node index.js"
+    "dev": "node index.js",
+	"build": "echo 'No build step needed for Node.js' && exit 0"
   },
   "dependencies": {
     "express": "^4.18.2"
@@ -17,4 +17,5 @@
   "keywords": ["plants", "website", "express"],
   "author": "Your Name",
   "license": "MIT"
+  
 }

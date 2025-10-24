@@ -2,7 +2,7 @@
             // 获取所有页面区块和导航按钮
             const sections = document.querySelectorAll('.page-section');
             const navButtons = document.querySelectorAll('.nav-btn');
-            const API_BASE = 'https://你的项目.vercel.app/api';
+            
             // 定义页面顺序
             const pageOrder = ['home', 'products', 'applications', 'contact', 'feedback-form'];
             let currentPageIndex = 0;
@@ -114,8 +114,7 @@
             // 加载最新反馈
             async function loadLatestFeedback() {
                 try {
-                    //const response = await fetch('/api/feedback/latest');
-                    const response = await fetch(`${API_BASE}/comments/latest?limit=3`);
+                    const response = await fetch('/api/feedback/latest');
                     const feedbacks = await response.json();
                     
                     const feedbackContainer = document.getElementById('latestFeedback');

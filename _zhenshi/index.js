@@ -5,6 +5,7 @@ const commentRoutes = require('./routes/comments');
 const app = express();
 
 // CORS 中间件
+
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
@@ -15,7 +16,6 @@ app.use((req, res, next) => {
     }
     next();
 });
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const API_BASE = 'https://你的项目.vercel.app/api';
     
     // 定义页面顺序（添加植物图鉴）
-    const pageOrder = ['home', 'products', 'applications', 'contact', 'feedback-form', 'plant-library'];
+    const pageOrder = ['home', 'products', 'applications', 'contact', 'feedback-form', 'plant-library','plant-combinations'];
     let currentPageIndex = 0;
     
     // 显示指定页面
@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', function() {
             loadLatestFeedback();
         }
         
-        // 处理植物图鉴页面的特殊显示
-        if (sectionId === 'plant-library') {
+        // 处理特殊页面的显示
+        if (sectionId === 'plant-library' || sectionId === 'plant-combinations') {
             document.body.classList.add('plant-library-active');
         } else {
             document.body.classList.remove('plant-library-active');
@@ -93,16 +93,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 返回首页按钮点击事件
-    const backToHomeBtn = document.querySelector('.back-to-home-btn');
-    if (backToHomeBtn) {
-        backToHomeBtn.addEventListener('click', function(e) {
+    const backToHomeBtns = document.querySelectorAll('.back-to-home-btn');
+    backToHomeBtns.forEach(btn => {
+        btn.addEventListener('click', function(e) {
             e.preventDefault();
             console.log('返回首页按钮被点击');
             
             // 返回首页
             showSection('home', 'right');
         });
-    }
+    });
+	
+	const plantCombinationsBtn = document.querySelector('.plant-combinations-btn');
+	if (plantCombinationsBtn) {
+	    plantCombinationsBtn.addEventListener('click', function(e) {
+	        e.preventDefault();
+	        showSection('plant-combinations', 'left');
+	    });
+	}
     
     // 留言反馈按钮
     const feedbackBtn = document.querySelector('.feedback-btn');

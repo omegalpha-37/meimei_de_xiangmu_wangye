@@ -50,3 +50,11 @@ app.use((err, req, res, next) => {
 
 // Vercel 需要导出 app 而不是监听端口
 module.exports = app;
+
+// 本地开发时监听端口
+if (require.main === module) {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`服务器运行在 http://localhost:${PORT}`);
+    });
+}

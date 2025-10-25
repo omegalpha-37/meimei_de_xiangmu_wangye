@@ -4,6 +4,9 @@ const path = require('path');
 const commentRoutes = require('./routes/comments');
 
 const app = express();
+require('dotenv').config();
+
+
 
 // 手动 CORS 中间件
 app.use((req, res, next) => {
@@ -26,8 +29,8 @@ app.use(express.static(path.join(__dirname, 'public'),{
 	index: false
 }));
 // 路由
-app.use('/api/comments', commentRoutes);
-
+//app.use('/api/comments', commentRoutes);
+app.use('/api/comments', require('./routes/comments'));
 // 提供前端页面 - 现在指向 public/index1.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index1.html'));

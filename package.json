@@ -6,16 +6,21 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node index.js",
-	"build": "echo 'No build step needed for Node.js' && exit 0"
+    "build": "echo 'No build step needed for Node.js' && exit 0"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.76.1",
+    "dotenv": "^17.2.3",
     "express": "^4.18.2"
   },
   "engines": {
     "node": ">=18"
   },
-  "keywords": ["plants", "website", "express"],
+  "keywords": [
+    "plants",
+    "website",
+    "express"
+  ],
   "author": "Your Name",
   "license": "MIT"
-  
 }

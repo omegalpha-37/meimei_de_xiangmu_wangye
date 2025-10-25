@@ -295,6 +295,82 @@
             <p>植拼物语 © 2025 版权所有</p>
         </div>
     </footer>
+
+    <!-- 添加反馈功能相关的JavaScript -->
+    <script>
+        // 加载最新反馈
+        async function loadLatestFeedback() {
+            try {
+                const response = await fetch('/api/comments/latest?limit=3');
+                const result = await response.json();
+                
+                const feedbackContainer = document.getElementById('latestFeedback');
+                
+                if (result.success && result.data.length > 0) {
+                    feedbackContainer.innerHTML = result.data.map(comment => `
+                        <div class="feedback-card">
+                            <h4>${comment.name}</h4>
+                            <p>${comment.message}</p>
+                            <small>${new Date(comment.timestamp).toLocaleDateString('zh-CN')}</small>
+                        </div>
+                    `).join('');
+                } else {
+                    feedbackContainer.innerHTML = '<div class="feedback-card"><p>暂无反馈，成为第一个留言的人吧！</p></div>';
+                }
+            } catch (error) {
+                console.error('加载反馈失败:', error);
+                document.getElementById('latestFeedback').innerHTML = 
+                    '<div class="feedback-card"><p>加载反馈失败，请刷新页面重试</p></div>';
+            }
+        }
+
+        // 提交留言表单
+        document.getElementById('messageForm')?.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+            
+            try {
+                const response = await fetch('/api/comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    alert('留言提交成功！');
+                    document.getElementById('messageForm').reset();
+                    // 返回首页并刷新反馈
+                    showPage('home');
+                    loadLatestFeedback();
+                } else {
+                    alert('提交失败：' + result.message);
+                }
+            } catch (error) {
+                console.error('提交留言失败:', error);
+                alert('提交失败，请重试');
+            }
+        });
+
+        // 页面加载完成后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLatestFeedback();
+            
+            // 留言反馈按钮点击事件
+            document.querySelector('.feedback-btn')?.addEventListener('click', function() {
+                showPage('feedback-form');
+            });
+        });
+    </script>
+
     <script src="js/main.js"></script>
 </body>
 </html>

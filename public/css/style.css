@@ -37,29 +37,34 @@
         font-weight: bold;
         font-family: "微软雅黑 Light";
         font-style: normal;
-        text-align: left;
+        white-space: nowrap;
     }
     
     .search-bar {
         display: flex;
-        width: 100%;
-        max-width: 500px;
+		width: auto;
+         min-width: 250px;
+		max-width: 400px;
+		flex: 1; 
     }
     
     .search-bar input {
         flex: 1;
-        padding: 10px 15px;
+        padding: 8px 12px;
         border: none;
         border-radius: 4px 0 0 4px;
+		font-size:14px;
     }
     
     .search-bar button {
         background-color: #a8d5ba;
         color: #2d5e3b;
         border: none;
-        padding: 10px 15px;
+        padding: 8px 15px;
         border-radius: 0 4px 4px 0;
         cursor: pointer;
+		font-size: 14px;
+		white-space: nowrap;
     }
     
     /* 导航样式 */
@@ -119,6 +124,14 @@
         text-align: center;
 		justify-items: center;
     }
+	
+	.main-content.four-cards {
+	    grid-template-columns: repeat(2, minmax(300px, 1fr));
+	    justify-content: center;
+	    max-width: 700px;
+	    margin-left: auto;
+	    margin-right: auto;
+	}
     
     .card {
         background-color: white;
@@ -128,6 +141,8 @@
         margin: 0 auto;
 		width: 300px;
 		min-height: 200px;
+		display: flex;
+		flex-direction: column;
     }
     
     .card h3 {
@@ -138,7 +153,12 @@
     .card p {
         color: #666;
         margin-bottom: 20px;
+		flex-grow: 1;
     }
+	
+	.card .btn {
+	    margin-top: auto;
+	}
     
     .btn {
         display: inline-block;
@@ -244,11 +264,15 @@
         border: 1px solid #ddd;
         border-radius: 4px;
         font-size: 14px;
+		box-sizing: border-box;
+		max-width: 100%;
     }
     
     .form-group textarea {
         height: 80px;
         resize: vertical;
+		min-height: 100px;
+		max-height: 200px;
     }
     
     .submit-btn {
@@ -305,6 +329,7 @@
         width: 100%;
         max-width: 600px;
 		box-sizing: border-box;
+		overflow: hidden;
     }
     
     .feedback-form-container h2 {
@@ -333,19 +358,39 @@
 
     /* 手机端响应式调整 */
     @media (max-width: 768px) {
+        .header-content {
+            flex-direction: column; /* 小屏幕上垂直排列 */
+            text-align: center;
+        }
+        
+        .search-bar {
+            width: 100%;
+            max-width: 100%;
+        }
+        
         .feedback-form-container {
-            padding: 30px 20px; /* 减少内边距 */
+            padding: 20px;
             margin: 0 10px;
         }
         
-        .feedback-form-section {
-            padding: 20px 10px;
+        .form-group input,
+        .form-group textarea {
+            font-size: 16px; /* 防止iOS缩放 */
         }
     }
     
+    /* 超小屏幕调整 */
     @media (max-width: 480px) {
+        .logo {
+            font-size: 20px; /* 稍微调小logo字体 */
+        }
+        
+        .search-bar {
+            min-width: 200px;
+        }
+        
         .feedback-form-container {
-            padding: 20px 15px;
+            padding: 15px;
             margin: 0 5px;
         }
     }

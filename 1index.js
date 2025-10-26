@@ -1,6 +1,5 @@
 // index.js
 const express = require('express');
-const cookieParser = require('cookie-parser'); // 新增：引入cookie解析中间件
 const path = require('path');
 const commentRoutes = require('./routes/comments');
 
@@ -24,7 +23,6 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
 
 // 静态文件服务 - 指向 public 文件夹
 app.use(express.static(path.join(__dirname, 'public'),{
@@ -32,13 +30,7 @@ app.use(express.static(path.join(__dirname, 'public'),{
 }));
 // 路由
 //app.use('/api/comments', commentRoutes);
-app.use('/api/auth', require('./routes/auth'));
 app.use('/api/comments', require('./routes/comments'));
-
-// 保护路由·示例
-//app.use('/api/protected', require('./middlewares/authMiddleware'), require('./routes/protected'));
-
-
 // 提供前端页面 - 现在指向 public/index1.html
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index1.html'));
@@ -59,7 +51,7 @@ app.use((err, req, res, next) => {
     res.status(500).json({ error: '服务器内部错误' });
 });
 
-// Vercel 导出
+// Vercel 需要导出 app 而不是监听端口
 module.exports = app;
 
 // 本地开发时监听端口

@@ -1,7 +1,6 @@
 // routes/comments.js
 const express = require('express');
 const router = express.Router();
-const { requireAuth } = require('../middlewares/authMiddleware');
 
 // 导入 Supabase 客户端
 const supabase = require('../config/supabaseClient');
@@ -69,17 +68,16 @@ router.get('/', async (req, res) => {
     }
 });
 
-// 发布评论（登录版）
-router.post('/', requireAuth, async (req, res) => {
+// 提交新评论
+router.post('/', async (req, res) => {
     try {
-        const { content } = req.body;
-        const user = req.user;
+        const { name, email, message } = req.body;
         
         // 验证必填字段
-        if (!content) {
+        if (!name || !message) {
             return res.status(400).json({
                 success: false,
-                message: '评论内容为必填项'
+                message: '姓名和留言内容为必填项'
             });
         }
         
@@ -88,11 +86,10 @@ router.post('/', requireAuth, async (req, res) => {
             .from('comments')
             .insert([
                 {
-                    content: content.trim(),
-                    user_id: user.id,
-                    user_email: user.email,
-                    status: 'active',
-                    created_at: new Date().toISOString()
+                    name: name.trim(),
+                    email: email ? email.trim() : '',
+                    message: message.trim(),
+                    status: 'active'
                 }
             ])
             .select();
@@ -107,11 +104,11 @@ router.post('/', requireAuth, async (req, res) => {
 
         res.json({
             success: true,
-            message: '评论发布成功',
+            message: '评论提交成功',
             data: data[0] // 返回新创建的评论
         });
     } catch (error) {
-        console.error('发布评论失败:', error);
+        console.error('提交评论失败:', error);
         res.status(500).json({
             success: false,
             message: '服务器错误'

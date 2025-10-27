@@ -8,6 +8,7 @@ class Auth {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password }),
+	  credentials: 'include'
     });
     
     return await response.json();
@@ -21,6 +22,7 @@ class Auth {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, password }),
+	  credentials: 'include'
     });
     
     return await response.json();
@@ -30,6 +32,7 @@ class Auth {
   async logout() {
     const response = await fetch('/api/auth/logout', {
       method: 'POST',
+	  credentials: 'include'
     });
     
     return await response.json();
@@ -37,7 +40,9 @@ class Auth {
 
   // 获取当前用户
   async getCurrentUser() {
-    const response = await fetch('/api/auth/user');
+    const response = await fetch('/api/auth/user',{
+		credentials: 'include'
+	});
     return await response.json();
   }
 }

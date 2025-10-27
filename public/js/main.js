@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // 获取所有页面区块和导航按钮
     const sections = document.querySelectorAll('.page-section');
     const navButtons = document.querySelectorAll('.nav-btn');
-    const API_BASE = 'https://你的项目.vercel.app/api';
     
     // 定义页面顺序（添加植物图鉴和认证页面）
     const pageOrder = [
@@ -208,6 +207,9 @@ document.addEventListener('DOMContentLoaded', function() {
 async function loadLatestFeedback() {
     try {
         const response = await fetch('/api/comments/latest?limit=3');
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
         const result = await response.json();
         
         const feedbackContainer = document.getElementById('latestFeedback');
@@ -271,6 +273,7 @@ async function submitFeedback(formData) {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(formData)
+			credentials: 'include'
         });
         
         const result = await response.json();

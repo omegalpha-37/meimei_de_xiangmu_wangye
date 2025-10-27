@@ -4,12 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const navButtons = document.querySelectorAll('.nav-btn');
     const API_BASE = 'https://你的项目.vercel.app/api';
     
-    // 定义页面顺序（添加植物图鉴和认证页面）
-    const pageOrder = [
-        'home', 'products', 'applications', 'contact', 
-        'feedback-form', 'plant-library', 'plant-combinations',
-        'login-page', 'register-page'
-    ];
+    // 定义页面顺序（添加植物图鉴）
+    const pageOrder = ['home', 'products', 'applications', 'contact', 'feedback-form', 'plant-library','plant-combinations'];
     let currentPageIndex = 0;
     
     // 显示指定页面
@@ -64,7 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.classList.remove('plant-library-active');
         }
     }
-    
     
     // 为导航按钮添加点击事件
     navButtons.forEach(button => {
@@ -141,61 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
             submitFeedback(formData);
         });
     }
-
-    // 认证相关功能
-    // 初始化 Auth 实例（来自 app.js）
-    const auth = new Auth();
-
-    // 登录按钮点击跳转
-    document.querySelector('.login-btn')?.addEventListener('click', () => {
-        showSection('login-page', 'left');
-    });
-
-    // 注册按钮点击跳转
-    document.querySelector('.register-btn')?.addEventListener('click', () => {
-        showSection('register-page', 'left');
-    });
-
-    // 登录/注册页面切换
-    document.getElementById('switchToRegister')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection('register-page', 'left');
-    });
-    document.getElementById('switchToLogin')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        showSection('login-page', 'right');
-    });
-
-    // 登录表单提交
-    document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-        
-        const result = await auth.login(email, password);
-        if (result.success) {
-            alert('登录成功！');
-            showSection('home', 'right'); // 登录后返回首页
-            // 可添加更新导航显示（如隐藏登录按钮，显示用户名）
-        } else {
-            alert('登录失败：' + result.error);
-        }
-    });
-
-    // 注册表单提交
-    document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('registerEmail').value;
-        const password = document.getElementById('registerPassword').value;
-        
-        const result = await auth.register(email, password);
-        if (result.success) {
-            alert('注册成功，请登录！');
-            showSection('login-page', 'right'); // 注册后跳转到登录页
-        } else {
-            alert('注册失败：' + result.error);
-        }
-    });
     
     // 加载最新反馈
     loadLatestFeedback();

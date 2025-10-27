@@ -16,10 +16,6 @@
                 <button>搜索</button>
             </div>
         </div>
-        <div class="auth-buttons">
-            <button class="btn login-btn" style="margin-right: 10px;">登录</button>
-            <button class="btn register-btn">注册</button>
-        </div>
     </header>
     
     <!-- 导航 -->
@@ -441,56 +437,6 @@
         </div>
     </div>
     
-    <!-- 登录页面 -->
-<div id="login-page" class="page-section">
-    <div class="feedback-form-section"> <!-- 复用现有表单区域样式 -->
-        <div class="container">
-            <div class="feedback-form-container">
-                <h2>用户登录</h2>
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="loginEmail">邮箱</label>
-                        <input type="email" id="loginEmail" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="loginPassword">密码</label>
-                        <input type="password" id="loginPassword" name="password" required>
-                    </div>
-                    <button type="submit" class="submit-btn">登录</button>
-                    <p style="margin-top: 15px; text-align: center;">
-                        还没有账号？<a href="#" id="switchToRegister" style="color: #2d5e3b; cursor: pointer;">点击注册</a>
-                    </p>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- 注册页面（可选，也可与登录页共用一个区块动态切换） -->
-<div id="register-page" class="page-section">
-    <div class="feedback-form-section">
-        <div class="container">
-            <div class="feedback-form-container">
-                <h2>用户注册</h2>
-                <form id="registerForm">
-                    <div class="form-group">
-                        <label for="registerEmail">邮箱</label>
-                        <input type="email" id="registerEmail" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="registerPassword">密码</label>
-                        <input type="password" id="registerPassword" name="password" required>
-                    </div>
-                    <button type="submit" class="submit-btn">注册</button>
-                    <p style="margin-top: 15px; text-align: center;">
-                        已有账号？<a href="#" id="switchToLogin" style="color: #2d5e3b; cursor: pointer;">点击登录</a>
-                    </p>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
     <!-- 页脚 -->
     <footer>
         <div class="container">
@@ -499,6 +445,5 @@
     </footer>        
 
     <script src="js/main.js"></script>
-    <script src="js/app.js"></script>
 </body>
 </html>

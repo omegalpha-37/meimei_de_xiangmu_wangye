@@ -150,11 +150,6 @@ document.addEventListener('DOMContentLoaded', function() {
         showSection('login-page', 'left');
     });
 
-    // 注册按钮点击跳转
-    document.querySelector('.register-btn')?.addEventListener('click', () => {
-        showSection('register-page', 'left');
-    });
-
     // 登录/注册页面切换
     document.getElementById('switchToRegister')?.addEventListener('click', (e) => {
         e.preventDefault();

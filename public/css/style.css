@@ -30,22 +30,31 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+		gap: 20px;
+		position: relative;
     }
     
     .logo {
         font-size: 24px;
         font-weight: bold;
         font-family: "微软雅黑 Light";
-        font-style: normal;
         white-space: nowrap;
+		flex-shrink: 0;
     }
+	
+	.header-right {
+	    display: flex;
+	    align-items: center;
+	    gap: 15px;
+	    flex-shrink: 0;
+	}
     
     .search-bar {
         display: flex;
-		width: auto;
-         min-width: 250px;
+        min-width: 250px;
 		max-width: 400px;
 		flex: 1; 
+		margin: 0;
     }
     
     .search-bar input {
@@ -66,6 +75,74 @@
 		font-size: 14px;
 		white-space: nowrap;
     }
+	
+	/* 登录按钮在右边 */
+	.auth-buttons {
+	    flex-shrink: 0;
+	    margin-left: 0;
+	}
+	
+	.login-btn {
+	    background-color: #a8d5ba;
+	    color: #2d5e3b;
+	    border: none;
+	    padding: 8px 16px;
+	    border-radius: 4px;
+	    cursor: pointer;
+	    font-size: 14px;
+	    white-space: nowrap;
+	    transition: all 0.3s;
+	}
+	
+	.login-btn:hover {
+	    background-color: #8bc4a1;
+	}
+	
+	/* 手机端响应式 - 重点修复 */
+	@media (max-width: 768px) {
+	    .header-content {
+	        display: grid;
+	        grid-template-columns: 1fr auto 1fr; /* logo和登录在同一行 */
+	        grid-template-rows: auto auto;
+	        gap: 10px;
+	        align-items: center;
+			justify-items: center;
+	    }
+	    
+	    .logo {
+			grid-column: 2;
+	        grid-row: 1;
+	        text-align: center;
+			justify-self: center; 
+	    }
+	    
+	    .auth-buttons {
+	        grid-column: 3;
+	        grid-row: 1;
+	        margin-left: 0;
+	        justify-self: end; /* 登录按钮右对齐 */
+	    }
+	    
+	    .search-bar {
+	        grid-column: 1 / 4; /* 搜索栏占据整行 */
+	        grid-row: 2;
+	        width: 100%;
+	        max-width: 90%;
+	        margin: 0 auto 15px auto;
+	    }
+	}
+	
+	/* 超小屏幕调整 */
+	@media (max-width: 480px) {
+	    .logo {
+	        font-size: 20px;
+	    }
+	    
+	    .login-btn {
+	        padding: 6px 12px;
+	        font-size: 13px;
+	    }
+	}
     
     /* 导航样式 */
     nav {

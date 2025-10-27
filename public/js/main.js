@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pageOrder = [
         'home', 'products', 'applications', 'contact', 
         'feedback-form', 'plant-library', 'plant-combinations',
-        'login-page', 'register-page'
+        'login-page', 'register-page','value-added'
     ];
     let currentPageIndex = 0;
     
@@ -108,11 +108,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 	
+	// 植物组合
 	const plantCombinationsBtn = document.querySelector('.plant-combinations-btn');
 	if (plantCombinationsBtn) {
 	    plantCombinationsBtn.addEventListener('click', function(e) {
 	        e.preventDefault();
 	        showSection('plant-combinations', 'left');
+	    });
+	}
+	
+	// 首页增值服务卡片按钮点击事件
+	const valueServiceBtn = document.querySelector('.horizontal-card:nth-child(3) .btn');
+	if (valueServiceBtn) {
+	    valueServiceBtn.addEventListener('click', function(e) {
+	        e.preventDefault();
+	        console.log('首页增值服务按钮被点击');
+	        
+	        // 切换到增值服务页面
+	        showSection('value-added', 'left');
 	    });
 	}
     

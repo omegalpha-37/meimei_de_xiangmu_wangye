@@ -775,4 +775,81 @@
         position: relative;
         z-index: 10001;
     }
+	
+	/* 增值服务页面样式 */
+	.four-cards {
+	    display: grid;
+	    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	    gap: 30px;
+	    max-width: 1200px;
+	    margin: 40px auto;
+	}
+	
+	.service-features {
+	    background-color: #e9f4ec;
+	    padding: 40px 0;
+	    border-radius: 10px;
+	}
+	
+	.service-features .feedback-cards {
+	    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	    gap: 20px;
+	    margin-top: 30px;
+	}
+	
+	.service-features .feedback-card {
+	    text-align: center;
+	    padding: 25px 20px;
+	    transition: transform 0.3s ease;
+	}
+	
+	.service-features .feedback-card:hover {
+	    transform: translateY(-5px);
+	}
+	
+	.service-features h4 {
+	    color: #2d5e3b;
+	    margin-bottom: 10px;
+	    font-size: 18px;
+	}
+	
+	/* 响应式调整 */
+	@media (max-width: 768px) {
+	    .four-cards {
+	        grid-template-columns: 1fr;
+	        gap: 20px;
+	        padding: 0 15px;
+	    }
+	    
+	    .service-features .feedback-cards {
+	        grid-template-columns: 1fr;
+	    }
+	}
+	/* 只针对增值服务页面的四列布局 */
+	#value-added .main-content.four-cards {
+	    display: grid;
+	    grid-template-columns: repeat(4, 1fr);
+	    gap: 20px;
+	    margin: 40px 0;
+	    max-width: 100%;
+	}
+	
+	#value-added .main-content.four-cards .card {
+		height: 600px;
+	    width: 100%;
+	    margin: 0;
+	}
+	
+	/* 响应式设计 */
+	@media (max-width: 1200px) {
+	    #value-added .main-content.four-cards {
+	        grid-template-columns: repeat(2, 1fr);
+	    }
+	}
+	
+	@media (max-width: 768px) {
+	    #value-added .main-content.four-cards {
+	        grid-template-columns: 1fr;
+	    }
+	}
 </style>

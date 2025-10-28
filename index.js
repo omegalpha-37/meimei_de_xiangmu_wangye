@@ -2,7 +2,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser'); // 新增：引入cookie解析中间件
 const path = require('path');
-
 const app = express();
 require('dotenv').config();
 
@@ -33,18 +32,13 @@ app.use(express.static(path.join(__dirname, 'public'),{
 // 路由挂载
 const authRoutes = require('./routes/auth')
 
-app.post('/api/verify-token', (req, res) => {
-    res.json({ success: true });
-});
-
-// 添加具体的登录注册路由
-app.post('/api/login', (req, res) => {
-    // 这里调用 authRoutes 中的登录逻辑
-    res.json({ success: true, message: '登录成功', token: 'test' });
-});
-
-app.post('/api/register', (req, res) => {
-    res.json({ success: true, message: '注册成功' });
+app.post('/api/verify-token', async (req, res) => {
+    const token = req.headers.authorization?.replace('Bearer ', '');
+    if (token === 'test') {
+		res.json({ success: true });
+	} else {
+		res.json({ success: false });
+	}
 });
 
 // 原有的路由组

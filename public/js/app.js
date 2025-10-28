@@ -1,7 +1,7 @@
 // 认证系统类
 class Auth {
     constructor() {
-        this.baseUrl = '/api';
+        this.baseUrl = '/api/auth';
         this.tokenKey = 'authToken';
         this.userKey = 'userInfo';
         
@@ -163,7 +163,7 @@ class Auth {
 // 评论系统类
 class CommentSystem {
     constructor() {
-        this.baseUrl = '/api/comments/allcomments';
+        this.baseUrl = '/api/auth';
         this.auth = new Auth();
     }
     

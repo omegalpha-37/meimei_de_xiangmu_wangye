@@ -200,6 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 更新认证状态显示函数
     function updateAuthStatus() {
         auth.getCurrentUser().then(result => {
+			console.log('updateAuthStatus 结果:', result);
             const authStatusElement = document.getElementById('commentAuthStatus');
             const submitCommentBtn = document.getElementById('submitCommentBtn');
             
@@ -271,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
-                const response = await fetch('/api/comments/postcomments', {
+                const response = await fetch('/api/comments', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

@@ -29,9 +29,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'),{
 	index: false
 }));
-// 路由
 
-app.use('/api/auth', require('./routes/auth'));
+// 路由挂载
+const authRoutes = require('./routes/auth')
+app.use('/api/auth', authRoutes.router);
+app.use('/api/auth', authRoutes.requireAuth);
+
 app.use('/api/comments', require('./routes/comments'));
 
 

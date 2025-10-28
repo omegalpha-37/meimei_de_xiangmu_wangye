@@ -1,10 +1,10 @@
 // routes/comments.js
 const express = require('express');
 const router = express.Router();
-const { requireAuth } = require('../middlewares/authMiddleware');
+const { requireAuth } = require('../routes/auth');
 
 // 导入 Supabase 客户端
-const supabase = require('../config/supabaseClient');
+const supabase = require('../routes/supabaseClient');
 
 // 获取最新评论（限制数量）
 router.get('/latest', async (req, res) => {
@@ -41,7 +41,7 @@ router.get('/latest', async (req, res) => {
 });
 
 // 获取所有评论
-router.get('/', async (req, res) => {
+router.get('/allcomments', async (req, res) => {
     try {
         const { data, error } = await supabase
             .from('comments')
@@ -70,7 +70,7 @@ router.get('/', async (req, res) => {
 });
 
 // 发布评论（登录版）
-router.post('/', requireAuth, async (req, res) => {
+router.post('/postcomments', requireAuth, async (req, res) => {
     try {
         const { content } = req.body;
         const user = req.user;
@@ -80,6 +80,13 @@ router.post('/', requireAuth, async (req, res) => {
             return res.status(400).json({
                 success: false,
                 message: '评论内容为必填项'
+            });
+        }
+
+        if (!content || content.trim().length > 500) { // 示例：限制500字
+            return res.status(400).json({
+            success: false,
+            message: '评论内容不能为空且长度不能超过500字'
             });
         }
         

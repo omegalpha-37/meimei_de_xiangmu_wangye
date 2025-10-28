@@ -2,6 +2,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser'); // 新增：引入cookie解析中间件
 const path = require('path');
+const commentRoutes = require('./routes/comments');
 
 const app = express();
 require('dotenv').config();
@@ -10,7 +11,7 @@ require('dotenv').config();
 
 // 手动 CORS 中间件
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://meimei-de-xiangmu-wangye.vercel.app/');
+    res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     
@@ -30,10 +31,12 @@ app.use(express.static(path.join(__dirname, 'public'),{
 	index: false
 }));
 // 路由
-
+//app.use('/api/comments', commentRoutes);
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/comments', require('./routes/comments'));
 
+// 保护路由·示例
+//app.use('/api/protected', require('./middlewares/authMiddleware'), require('./routes/protected'));
 
 
 // 提供前端页面 - 现在指向 public/index1.html

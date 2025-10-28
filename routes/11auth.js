@@ -1,29 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const supabase = require('../routes/supabaseClient');
-
-// 认证中间件：验证用户是否登录
-const requireAuth = async (req, res, next) => {
-  try {
-    const token = req.cookies['sb-access-token'];
-    
-    if (!token) {
-      return res.status(401).json({ error: '请先登录' });
-    }
-
-    const { user, error } = await supabase.auth.getUser(token);
-
-    if (error || !user) {
-      res.clearCookie('sb-access-token');
-      return res.status(401).json({ error: '登录已过期，请重新登录' });
-    }
-
-    req.user = user;
-    next();
-  } catch (error) {
-    res.status(500).json({ error: '认证错误' });
-  }
-};
+const supabase = require('../config/supabaseClient');
 
 // 注册
 router.post('/register', async (req, res) => {
@@ -40,7 +17,6 @@ router.post('/register', async (req, res) => {
     }
 
     res.json({ 
-      success: true,
       message: '注册成功，请检查邮箱验证', 
       user: user 
     });
@@ -71,7 +47,6 @@ router.post('/login', async (req, res) => {
     });
 
     res.json({ 
-      success: true,
       message: '登录成功', 
       user: user 
     });
@@ -119,5 +94,4 @@ router.get('/user', async (req, res) => {
   }
 });
 
-// 导出路由和中间件（供其他文件使用中间件）
-module.exports = { router, requireAuth };
+module.exports = router;

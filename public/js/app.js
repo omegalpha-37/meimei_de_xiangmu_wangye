@@ -163,7 +163,7 @@ class Auth {
 // 评论系统类
 class CommentSystem {
     constructor() {
-        this.baseUrl = '/api/comments';
+        this.baseUrl = '/api/comments/allcomments';
         this.auth = new Auth();
     }
     
@@ -309,13 +309,6 @@ class PlantManager {
         div.textContent = text;
         return div.innerHTML;
     }
-}
-
-// 反馈系统类
-class FeedbackSystem {
-    constructor() {
-        this.baseUrl = '/api/feedback';
-    }
     
     // 提交反馈
     async submitFeedback(feedbackData) {
@@ -437,9 +430,6 @@ class PageManager {
     
     handlePageSpecificLogic(pageId) {
         switch (pageId) {
-            case 'home':
-                this.loadHomePageData();
-                break;
             case 'plant-library':
                 this.loadPlantLibrary();
                 break;
@@ -449,17 +439,6 @@ class PageManager {
             case 'value-added':
                 this.loadValueAddedPage();
                 break;
-        }
-    }
-    
-    async loadHomePageData() {
-        // 加载首页数据
-        const feedbackSystem = new FeedbackSystem();
-        const latestFeedback = await feedbackSystem.getLatestFeedback(3);
-        
-        // 更新首页反馈卡片
-        if (latestFeedback.success) {
-            this.updateFeedbackCards(latestFeedback.data);
         }
     }
     

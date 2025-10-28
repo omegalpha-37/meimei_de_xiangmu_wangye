@@ -182,22 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
         showSection('login-page', 'right');
     });
 
-    // 登录表单提交
-    document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
-        
-        const result = await auth.login(email, password);
-        if (result.success) {
-            alert('登录成功！');
-            onLoginSuccess();
-            showSection('home', 'right'); // 登录后返回首页
-        } else {
-            alert('登录失败：' + result.error);
-        }
-    });
-
     // 注册表单提交
     document.getElementById('registerForm')?.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -287,7 +271,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
-                const response = await fetch('/api/comments', {
+                const response = await fetch('/api/comments/postcomments', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -333,7 +317,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 加载评论函数
     async function loadComments() {
         try {
-            const response = await fetch('/api/comments?limit=50');
+            const response = await fetch('/api/comments/allcomments?limit=50');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }

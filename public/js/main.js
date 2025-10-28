@@ -275,7 +275,7 @@ async function loadLatestFeedback() {
 // 提交反馈函数
 async function submitFeedback(formData) {
     try {
-        const response = await fetch('/api/comments', {
+        const response = await fetch('/api/comments/postcomments', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

@@ -274,6 +274,8 @@ async function loadLatestFeedback() {
 
 // 提交反馈函数
 async function submitFeedback(formData) {
+    //调试中
+    console.log('收到评论提交请求:', req.body); // 关键：检查是否打印
     try {
         const response = await fetch('/api/comments/postcomments', {
             method: 'POST',

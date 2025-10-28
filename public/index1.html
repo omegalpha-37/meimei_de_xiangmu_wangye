@@ -458,8 +458,8 @@
                     </div>
                     <div class="feedback-card">
                         <h3>在线留言</h3>
-                        <p>如果您有任何问题，欢迎联系我们。</p>
-                        <button class="btn feedback-btn">留言反馈</button>
+                        <p>如果您有任何问题或建议，欢迎给我们留言。</p>
+                        <button class="btn feedback-btn" style="margin-top: 15px;">留言反馈</button>
                     </div>
                     <div class="feedback-card">
                         <h3>关注我们</h3>
@@ -476,22 +476,26 @@
         <div class="feedback-form-section">
             <div class="container">
                 <div class="feedback-form-container">
-                    <h2>留言反馈</h2>
-                    <form id="messageForm">
+                    <h2>发表评论</h2>
+                    <div id="commentAuthStatus" class="auth-status" style="margin-bottom: 20px; padding: 10px; border-radius: 4px; text-align: center;">
+                        <!-- 认证状态将在这里显示 -->
+                    </div>
+                    <form id="commentForm">
                         <div class="form-group">
-                            <label for="name">姓名</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="comment">评论内容</label>
+                            <textarea id="comment" name="comment" placeholder="请输入您的评论..." required minlength="5" maxlength="500"></textarea>
+                            <div style="text-align: right; font-size: 12px; color: #666; margin-top: 5px;">
+                                <span id="charCount">0</span>/500
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="email">邮箱</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">留言内容</label>
-                            <textarea id="message" name="message" placeholder="请输入您的留言..." required></textarea>
-                        </div>
-                        <button type="submit" class="submit-btn">提交留言</button>
+                        <button type="submit" class="submit-btn" id="submitCommentBtn">发表评论</button>
                     </form>
+                    <div id="commentList" style="margin-top: 30px;">
+                        <h3>所有评论</h3>
+                        <div class="comments-container">
+                            <!-- 评论列表将在这里动态显示 -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

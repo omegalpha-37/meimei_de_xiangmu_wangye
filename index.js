@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public'),{
 
 // 路由挂载
 const authRoutes = require('./routes/auth')
-
+/*      先注释掉
 app.post('/api/verify-token', async (req, res) => {
     const token = req.headers.authorization?.replace('Bearer ', '');
     if (token === 'test') {
@@ -39,9 +39,10 @@ app.post('/api/verify-token', async (req, res) => {
 	} else {
 		res.json({ success: false });
 	}
-});
+});*/
 
 // 原有的路由组
+app.use('/api/auth',authRoutes.requireAuth)
 app.use('/api/auth', authRoutes.router);
 app.use('/api/comments', require('./routes/comments'));
 

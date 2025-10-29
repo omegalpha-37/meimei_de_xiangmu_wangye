@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('获取用户信息失败:', error);
                 return { success: false, user: null };
             }
-        }
+            }
 
         getToken() {
         // 由于使用 httpOnly Cookie，前端无法直接获取 token
@@ -101,16 +101,22 @@ document.addEventListener('DOMContentLoaded', function() {
         
         async submitComment(content) {
             try {
-                // 不需要获取 token
-                const response = await fetch(`${this.baseUrl}/postcomments`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                        // 移除 Authorization 头
-                    },
-                    body: JSON.stringify({ content: content })
-                });
-                return await response.json();
+                const token = this.auth.getToken();
+                if (!token) {
+                    return { success: false, message: '请先登录' };
+                }
+                
+            const response = await fetch(`${this.baseUrl}/postcomments`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
+                body: JSON.stringify({
+                content: content // 移除timestamp字段
+                })
+            });
+            return await response.json();
             } catch (error) {
                 console.error('提交评论失败:', error);
                 return { success: false, message: '网络错误，请稍后重试' };
@@ -392,7 +398,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (result.success) {
                     alert('登录成功！');
                     this.updateAuthStatus();
-                    this.showSection('feedback-form', 'left');
+                    this.showSection('home', 'right');
                 } else {
                     alert('登录失败：' + result.error);
                 }

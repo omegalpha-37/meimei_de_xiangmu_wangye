@@ -29,8 +29,6 @@ app.use(express.static(path.join(__dirname, 'public'),{
 	index: false
 }));
 
-// 路由挂载
-const authRoutes = require('./routes/auth')
 /*      先注释掉
 app.post('/api/verify-token', async (req, res) => {
     const token = req.headers.authorization?.replace('Bearer ', '');
@@ -41,8 +39,9 @@ app.post('/api/verify-token', async (req, res) => {
 	}
 });*/
 
-// 原有的路由组
-app.use('/api/auth',authRoutes.requireAuth)
+// 路由挂载
+const authRoutes = require('./routes/auth');
+app.use('/api/auth',authRoutes.requireAuth);
 app.use('/api/auth', authRoutes.router);
 app.use('/api/comments', require('./routes/comments'));
 

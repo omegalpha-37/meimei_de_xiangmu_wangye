@@ -3,19 +3,34 @@ document.addEventListener('DOMContentLoaded', function() {
     class Auth {
         constructor() {
             this.baseUrl = '/api/auth';
+            this.tokenKey = 'authToken';
+            this.userKey = 'userInfo';
+            this.checkTokenValidity();
         }
         
         async checkTokenValidity() {
-        try {
-            const response = await fetch(`${this.baseUrl}/user`); // 无需带 Authorization 头
-            const result = await response.json();
-            return !!result.user; // 用户存在则 token 有效
-        } catch (error) {
-            console.log('Token验证失败:', error);
-            this.logout();
+            const token = localStorage.getItem(this.tokenKey);
+            if (token) {
+                try {
+                    const response = await fetch(`${this.baseUrl}/verify-token`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                    
+                    if (!response.ok) throw new Error('Token invalid');
+                    const result = await response.json();
+                    return result.success;
+                } catch (error) {
+                    console.log('Token验证失败:', error);
+                    this.logout();
+                    return false;
+                }
+            }
             return false;
         }
-    }
         
         async register(email, password) {
             try {
@@ -36,31 +51,50 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         async login(email, password) {
-        try {
-            const response = await fetch(`${this.baseUrl}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password })
-            });
-            const result = await response.json();
-            if (result.success) {
-                return { success: true, user: result.user };
-            } else {
-                return { success: false, error: result.error || '登录失败' };
+            try {
+                const response = await fetch(`${this.baseUrl}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                const result = await response.json();
+                
+                if (result.success && result.token) {
+                    localStorage.setItem(this.tokenKey, result.token);
+                    if (result.user) {
+                        localStorage.setItem(this.userKey, JSON.stringify(result.user));
+                    }
+                    return { success: true, user: result.user };
+                } else {
+                    return { success: false, error: result.message || '登录失败' };
+                }
+            } catch (error) {
+                console.error('登录请求失败:', error);
+                return { success: false, error: '网络错误，请稍后重试' };
             }
-        } catch (error) {
-            return { success: false, error: '网络错误' };
         }
-    }
         
         async logout() {
-        try {
-            await fetch(`${this.baseUrl}/logout`, { method: 'POST' }); // 无需带 token 头
-        } finally {
-            // 无需清除 localStorage，后端会清除 Cookie
-            console.log('用户已退出登录');
+            try {
+                const token = localStorage.getItem(this.tokenKey);
+                if (token) {
+                    await fetch(`${this.baseUrl}/logout`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                }
+            } catch (error) {
+                console.error('退出登录请求失败:', error);
+            } finally {
+                localStorage.removeItem(this.tokenKey);
+                localStorage.removeItem(this.userKey);
+                console.log('用户已退出登录');
+            }
         }
-    }
         
         async getCurrentUser() {
             const token = localStorage.getItem(this.tokenKey);
@@ -110,17 +144,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     return { success: false, message: '请先登录' };
                 }
                 
-            const response = await fetch(`${this.baseUrl}/postcomments`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                content: content // 移除timestamp字段
-                })
-            });
-            return await response.json();
+                const response = await fetch(this.baseUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify({
+                        content: content,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+                
+                return await response.json();
             } catch (error) {
                 console.error('提交评论失败:', error);
                 return { success: false, message: '网络错误，请稍后重试' };
@@ -129,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         async getComments(limit = 50) {
             try {
-                const response = await fetch(`${this.baseUrl}/latest?limit=${limit}`);
+                const response = await fetch(`${this.baseUrl}/allcomments?limit=${limit}`);
                 return await response.json();
             } catch (error) {
                 console.error('获取评论失败:', error);
@@ -142,12 +178,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 container.innerHTML = '<div class="no-comments">暂无评论</div>';
                 return;
             }
-    
+            
             container.innerHTML = comments.map(comment => `
                 <div class="comment-item">
                     <div class="comment-header">
-                        <span class="comment-author">${this.escapeHtml(comment.user_email)}</span>
-                        <span class="comment-time">${new Date(comment.created_at).toLocaleString('zh-CN')}</span>
+                        <span class="comment-author">${this.escapeHtml(comment.userName || comment.userEmail)}</span>
+                        <span class="comment-time">${new Date(comment.timestamp).toLocaleString('zh-CN')}</span>
                     </div>
                     <div class="comment-content">${this.escapeHtml(comment.content)}</div>
                 </div>

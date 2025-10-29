@@ -9,9 +9,20 @@ require('dotenv').config();
 
 // 手动 CORS 中间件
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://meimei-de-xiangmu-wangye.vercel.app');
+    // 根据环境动态设置允许的源
+    const allowedOrigins = [
+        'https://meimei-de-xiangmu-wangye.vercel.app',
+        'http://localhost:3000'
+    ];
+    
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+    }
+    
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true'); // 如果需要凭证
     
     // 处理预检请求
     if (req.method === 'OPTIONS') {
@@ -40,9 +51,8 @@ app.post('/api/verify-token', async (req, res) => {
 });*/
 
 // 路由挂载
-const authRoutes = require('./routes/auth');
-app.use('/api/auth',authRoutes.requireAuth);
-app.use('/api/auth', authRoutes.router);
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/authMiddleware', require('./routes/authMiddleware'));
 app.use('/api/comments', require('./routes/comments'));
 
 // 提供前端页面 - 现在指向 public/index1.html

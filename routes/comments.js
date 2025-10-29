@@ -1,7 +1,7 @@
 // routes/comments.js
 const express = require('express');
 const router = express.Router();
-const { requireAuth } = require('../routes/auth');
+const requireAuth = require('../routes/authMiddleware');
 
 // 导入 Supabase 客户端
 const supabase = require('../routes/supabaseClient');
@@ -99,7 +99,8 @@ router.post('/postcomments', requireAuth, async (req, res) => {
                     user_id: user.id,
                     user_email: user.email,
                     status: 'active',
-                    created_at: new Date().toISOString()
+                    //supabase中有时间戳功能，先注释掉
+                    //created_at: new Date().toISOString()
                 }
             ])
             .select();

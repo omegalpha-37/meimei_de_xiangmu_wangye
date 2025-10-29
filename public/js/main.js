@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const result = await response.json();
                 return result.success 
                     ? { success: true, message: result.message }
-                    : { success: false, error: result.message || '注册失败' };
+                    : { success: false, error: result.error || result.message || '注册失败' };
             } catch (error) {
                 console.error('注册请求失败:', error);
                 return { success: false, error: '网络错误，请稍后重试' };

@@ -6,6 +6,8 @@ auth/lgout	登出
 
 auth/user	获取当前用户信息
 
+authMiddleware/requireAuth	验证是否登录
+
 comments/latest	获取最新的评论（会返回最新的5条评论）
 
 comments/allcomments	获取所有评论

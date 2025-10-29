@@ -2,8 +2,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser'); // 新增：引入cookie解析中间件
 const path = require('path');
-const commentRoutes = require('./routes/comments');
-
 const app = express();
 require('dotenv').config();
 
@@ -11,9 +9,20 @@ require('dotenv').config();
 
 // 手动 CORS 中间件
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
+    // 根据环境动态设置允许的源
+    const allowedOrigins = [
+        'https://meimei-de-xiangmu-wangye.vercel.app',
+        'http://localhost:3000'
+    ];
+    
+    const origin = req.headers.origin;
+    if (allowedOrigins.includes(origin)) {
+        res.header('Access-Control-Allow-Origin', origin);
+    }
+    
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.header('Access-Control-Allow-Credentials', 'true'); // 如果需要凭证
     
     // 处理预检请求
     if (req.method === 'OPTIONS') {
@@ -30,14 +39,22 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public'),{
 	index: false
 }));
-// 路由
-//app.use('/api/comments', commentRoutes);
-app.use('/api/auth', require('./routes/auth'));
+
+/*      先注释掉
+app.post('/api/verify-token', async (req, res) => {
+    const token = req.headers.authorization?.replace('Bearer ', '');
+    if (token === 'test') {
+		res.json({ success: true });
+	} else {
+		res.json({ success: false });
+	}
+});*/
+
+// 路由挂载
+const authRoutes = require('./routes/auth');
+app.use('/api/auth',authRoutes.requireAuth);
+app.use('/api/auth', authRoutes.router);
 app.use('/api/comments', require('./routes/comments'));
-
-// 保护路由·示例
-//app.use('/api/protected', require('./middlewares/authMiddleware'), require('./routes/protected'));
-
 
 // 提供前端页面 - 现在指向 public/index1.html
 app.get('/', (req, res) => {

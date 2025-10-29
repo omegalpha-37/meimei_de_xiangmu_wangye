@@ -11,7 +11,7 @@ const requireAuth = async (req, res, next) => {
       return res.status(401).json({ error: '请先登录' });
     }
 
-    const { user, error } = await supabase.auth.getUser(token);
+    const { data: { user }, error } = await supabase.auth.getUser(token);
 
     if (error || !user) {
       res.clearCookie('sb-access-token');
@@ -30,7 +30,8 @@ router.post('/register', async (req, res) => {
   try {
     const { email, password } = req.body;
     
-    const { user, error } = await supabase.auth.signUp({
+    // v2 中 signUp 保留，但返回值结构调整为 data 和 error
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
     });
@@ -42,19 +43,20 @@ router.post('/register', async (req, res) => {
     res.json({ 
       success: true,
       message: '注册成功，请检查邮箱验证', 
-      user: user 
+      user: data.user 
     });
   } catch (error) {
     res.status(500).json({ error: '服务器错误' });
   }
 });
 
-// 登录
+// 登录（使用 v2 新方法 signInWithPassword）
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     
-    const { user, session, error } = await supabase.auth.signIn({
+    // 替代过时的 signIn 方法
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -64,7 +66,7 @@ router.post('/login', async (req, res) => {
     }
 
     // 设置session cookie
-    res.cookie('sb-access-token', session.access_token, {
+    res.cookie('sb-access-token', data.session.access_token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7天
@@ -73,16 +75,17 @@ router.post('/login', async (req, res) => {
     res.json({ 
       success: true,
       message: '登录成功', 
-      user: user 
+      user: data.user 
     });
   } catch (error) {
     res.status(500).json({ error: '服务器错误' });
   }
 });
 
-// 登出
+// 登出（使用 v2 新方法 signOut）
 router.post('/logout', async (req, res) => {
   try {
+    // v2 中 signOut 方法保留，但返回值结构调整为 data 和 error
     const { error } = await supabase.auth.signOut();
     
     if (error) {
@@ -106,7 +109,7 @@ router.get('/user', async (req, res) => {
       return res.json({ user: null });
     }
 
-    const { user, error } = await supabase.auth.getUser(token);
+    const { data: { user }, error } = await supabase.auth.getUser(token);
 
     if (error) {
       res.clearCookie('sb-access-token');
@@ -119,5 +122,4 @@ router.get('/user', async (req, res) => {
   }
 });
 
-// 导出路由和中间件（供其他文件使用中间件）
 module.exports = { router, requireAuth };

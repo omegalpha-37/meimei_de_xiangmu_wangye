@@ -41,6 +41,7 @@ router.get('/latest', async (req, res) => {
 });
 
 // 获取所有评论
+//supabase目前仅允许管理员查看所有评论，待添加管理员权限验证（不需要也可以）
 router.get('/allcomments', async (req, res) => {
     try {
         const { data, error } = await supabase
@@ -97,7 +98,8 @@ router.post('/postcomments', requireAuth, async (req, res) => {
                 {
                     content: content.trim(),
                     user_id: user.id,
-                    user_email: user.email,
+                    //先注释掉
+                    //user_email: user.email,
                     status: 'active',
                     //supabase中有时间戳功能，先注释掉
                     //created_at: new Date().toISOString()
@@ -164,5 +166,7 @@ router.get('/count', async (req, res) => {
         });
     }
 });
+
+//待添加：评论修改和评论删除（supabase策略已存在）
 
 module.exports = router;

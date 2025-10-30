@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    let homeScrollPosition = 0;
+    
     // 认证系统类
     class Auth {
         constructor() {
@@ -7,9 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         async checkTokenValidity() {
             try {
-                const response = await fetch(`${this.baseUrl}/user`); // 无需带 Authorization 头
+                const response = await fetch(`${this.baseUrl}/user`);
                 const result = await response.json();
-                return !!result.user; // 用户存在则 token 有效
+                return !!result.user;
             } catch (error) {
                 console.log('Token验证失败:', error);
                 this.logout();
@@ -55,9 +57,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         async logout() {
             try {
-                await fetch(`${this.baseUrl}/logout`, { method: 'POST' }); // 无需带 token 头
+                await fetch(`${this.baseUrl}/logout`, { method: 'POST' });
             } finally {
-                // 无需清除 localStorage，后端会清除 Cookie
                 console.log('用户已退出登录');
             }
         }
@@ -78,17 +79,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         getToken() {
-        // 由于使用 httpOnly Cookie，前端无法直接获取 token
-        // 评论提交时也不需要手动附加 token
-        return null;
-        }
-        
-        getToken() {
-            return localStorage.getItem(this.tokenKey);
+            return null; // 使用 httpOnly Cookie
         }
         
         isLoggedIn() {
-            return !!localStorage.getItem(this.tokenKey);
+            return !!this.getToken();
         }
     }
 
@@ -96,18 +91,13 @@ document.addEventListener('DOMContentLoaded', function() {
     class CommentSystem {
         constructor() {
             this.baseUrl = '/api/comments';
-            this.auth = new Auth();
         }
         
         async submitComment(content) {
             try {
-                // 不需要获取 token
                 const response = await fetch(`${this.baseUrl}/postcomments`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                        // 移除 Authorization 头
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ content: content })
                 });
                 return await response.json();
@@ -136,8 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
             container.innerHTML = comments.map(comment => `
                 <div class="comment-item">
                     <div class="comment-header">
-                        <span class="comment-author">${this.escapeHtml(comment.user_email)}</span>
-                        <span class="comment-time">${new Date(comment.created_at).toLocaleString('zh-CN')}</span>
+                        <span class="comment-author">${this.escapeHtml(comment.user_email || comment.userName || comment.userEmail)}</span>
+                        <span class="comment-time">${new Date(comment.timestamp || comment.created_at).toLocaleString('zh-CN')}</span>
                     </div>
                     <div class="comment-content">${this.escapeHtml(comment.content)}</div>
                 </div>
@@ -219,7 +209,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 页面管理类
+    // 页面管理类 (合并两个文件的特性)
     class PageManager {
         constructor() {
             this.pageOrder = [
@@ -259,6 +249,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                     
                     this.showSection(targetId, direction);
+                });
+            });
+            
+            // 卡片点击事件
+            const horizontalCards = document.querySelectorAll('.horizontal-card');
+            horizontalCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = card.getAttribute('data-target');
+                    if (targetId) {
+                        this.showSection(targetId, 'left');
+                    }
                 });
             });
             
@@ -417,6 +419,21 @@ document.addEventListener('DOMContentLoaded', function() {
         showSection(sectionId, direction) {
             console.log('切换到页面:', sectionId);
             
+            // 首页滚动位置处理
+            if (document.getElementById('home').classList.contains('active') && sectionId !== 'home') {
+                homeScrollPosition = window.scrollY || document.documentElement.scrollTop;
+                console.log('保存首页位置:', homeScrollPosition);
+            }
+            
+            // 返回首页时恢复滚动位置
+            if (sectionId === 'home' && homeScrollPosition > 0) {
+                window.scrollTo({
+                    top: homeScrollPosition,
+                    behavior: 'instant'
+                });
+                console.log('恢复首页位置:', homeScrollPosition);
+            }
+            
             // 隐藏所有页面
             this.sections.forEach(section => {
                 section.style.display = 'none';
@@ -437,6 +454,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 setTimeout(() => {
                     targetSection.classList.add('active');
+                    
+                    // 全屏页面滚动到顶部
+                    if (targetSection.classList.contains('fullscreen-page')) {
+                        window.scrollTo(0, 0);
+                    }
                 }, 50);
             }
             
@@ -456,10 +478,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.loadLatestFeedback();
             }
             
+            // 特殊页面样式处理
             if (sectionId === 'plant-library' || sectionId === 'plant-combinations') {
                 document.body.classList.add('plant-library-active');
+                document.body.classList.remove('value-added-active');
+            } else if (sectionId === 'value-added') {
+                document.body.classList.add('value-added-active');
+                document.body.classList.remove('plant-library-active');
             } else {
                 document.body.classList.remove('plant-library-active');
+                document.body.classList.remove('value-added-active');
             }
             
             // 评论页面处理
@@ -545,8 +573,8 @@ document.addEventListener('DOMContentLoaded', function() {
         loadLatestFeedback() {
             const feedbackCards = document.querySelectorAll('.feedback-card');
             feedbackCards.forEach(card => {
-                const randomRating = Math.floor(Math.random() * 2) + 4; // 4-5星
-                const randomComments = Math.floor(Math.random() * 100) + 20; // 20-119条评论
+                const randomRating = Math.floor(Math.random() * 2) + 4;
+                const randomComments = Math.floor(Math.random() * 100) + 20;
                 
                 const ratingElement = card.querySelector('.rating');
                 const commentsElement = card.querySelector('.comments');

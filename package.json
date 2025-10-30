@@ -6,14 +6,15 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node index.js",
-    "build": "echo 'No build step needed for Node.js' && exit 0"
+    "build": "echo 'No build step needed' && exit 0"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.76.1",
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.2.3",
     "express": "^4.18.2",
-    "express-session": "^1.18.2"
+    "express-session": "^1.18.2",
+    "serverless-http": "^4.0.0"
   },
   "engines": {
     "node": ">=18"

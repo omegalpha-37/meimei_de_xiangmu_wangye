@@ -1,0 +1,19 @@
+{
+	"geolocation": {
+		"data": {
+			"city": "Changsha",
+			"country": {
+				"code": "CN",
+				"name": "China"
+			},
+			"subdivision": {
+				"code": "HN",
+				"name": "Hunan"
+			},
+			"timezone": "Asia/Shanghai",
+			"latitude": 28.2014,
+			"longitude": 112.9611
+		},
+		"timestamp": 1761872087240
+	}
+}

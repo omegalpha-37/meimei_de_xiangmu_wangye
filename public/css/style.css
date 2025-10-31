@@ -22,7 +22,7 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      background-image: url('../images/bkg1.png');
+      background-image: url('../images/bkg1.jpg');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center top;
@@ -967,6 +967,22 @@
     body.value-added-active header,
     body.value-added-active nav {
         display: none !important;
+    }
+
+    body.plant-library-active .dark-bg,
+    body.plant-combinations-active .dark-bg,
+    body.value-added-active .dark-bg {
+        background-image: none !important;
+        background-color: white; /* 替换为你的浅色背景图 */
+        /* 若无需图片，可改为纯色背景：background-color: #f0f7f2; */
+    }
+
+    body.plant-library-active .light-bg,
+    body.plant-combinations-active .light-bg,
+    body.value-added-active .light-bg {
+        background-image: none !important;
+        background-color: white; /* 替换为你的浅色背景图 */
+        /* 若无需图片，可改为纯色背景：background-color: #f0f7f2; */
     }
     
     body.plant-library-active footer,

@@ -87,6 +87,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // 全局背景切换效果
+    const darkBg = document.querySelector('.dark-bg');
+    // 监听页面滚动事件
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const markerPosition = 200;
+        let opacity;
+        if (scrollY < markerPosition) {
+            opacity = 1;
+        } else if (scrollY > markerPosition + 300) {
+            opacity = 0;
+        } else {
+            opacity = 1 - (scrollY - markerPosition) / 300;
+        }
+        darkBg.style.opacity = opacity;
+    });
+
     // 评论系统类
     class CommentSystem {
         constructor() {

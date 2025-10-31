@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>植拼物语网站</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">植拼物语</div>
+            <div class="search-bar">
+                <input type="text" placeholder="请输入您要搜索的内容">
+                <button>搜索</button>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn login-btn" style="margin-right: 10px;">登录</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 导航 -->
+    <nav>
+        <div class="container">
+            <div class="nav-buttons">
+                <button class="nav-btn active" data-target="home">首页</button>
+                <button class="nav-btn" data-target="products">产品中心</button>
+                <button class="nav-btn" data-target="applications">产品应用</button>
+                <button class="nav-btn" data-target="contact">关于我们</button>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 首页内容 -->
+    <div id="home" class="page-section active">
+        <div class="container">
+            <div class="horizontal-cards-container">
+                <!-- 卡片1 -->
+                <div class="horizontal-card" data-target="plant-library">
+                    <div class="horizontal-card-image">
+                        <img src='images/dpzw.webp' alt="单盆植物">
+                    </div>
+                    <div class="horizontal-card-content-container">
+                        <div class="horizontal-card-content">
+                            <h3 class="horizontal-card-title">单盆植物</h3>
+                            <p class="horizontal-card-desc">这里将介绍不同植物的基本概念和意义</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 卡片2 -->
+                <div class="horizontal-card reverse" data-target="plant-combinations">
+                    <div class="horizontal-card-image">
+                        <img src='images/zwzh.webp' alt="植物组合">
+                    </div>
+                    <div class="horizontal-card-content-container">
+                        <div class="horizontal-card-content">
+                            <h3 class="horizontal-card-title">植物组合</h3>
+                            <p class="horizontal-card-desc">这里将介绍不同植物种类组合的特性与作用</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 卡片3 -->
+                <div class="horizontal-card" data-target="value-added">
+                    <div class="horizontal-card-image">
+                        <img src='images/zzfw.png' alt="增值服务">
+                    </div>
+                    <div class="horizontal-card-content-container">
+                        <div class="horizontal-card-content">
+                            <h3 class="horizontal-card-title">增值服务</h3>
+                            <p class="horizontal-card-desc">这里将介绍我们提供的增值服务内容</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 卡片4 -->
+                <div class="horizontal-card reverse">
+                    <div class="horizontal-card-image">
+                        <img src='images/yysp.webp' alt="营养食品">
+                    </div>
+                    <div class="horizontal-card-content-container">
+                        <div class="horizontal-card-content">
+                            <h3 class="horizontal-card-title">营养食品</h3>
+                            <p class="horizontal-card-desc">这里将向您推荐由不同植物制成富有营养的产品</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 植物图鉴页面 - 独立的全屏页面 -->
+    <div id="plant-library" class="page-section fullscreen-page">
+        <!-- 自定义头部（只有返回按钮） -->
+        <div class="custom-header" style="background: #2d5e3b; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="back-to-home-btn" style="background: #a8d5ba; color: #2d5e3b; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                    ← 返回首页
+                </button>
+                <h2 style="margin: 0; color: white;">植物图鉴</h2>
+                <div style="width: 80px;"></div> <!-- 占位，保持对称 -->
+            </div>
+        </div>
+        
+        <!-- 页面内容 -->
+        <div class="container" style="padding-top: 20px;">
+            
+            <!-- 搜索筛选区 -->
+            <div class="search-filter" style="margin-bottom: 30px; text-align: center;">
+                <input type="text" placeholder="搜索植物..." style="padding: 10px; width: 300px; max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+                <button class="btn" style="margin-left: 10px;">搜索</button>
+            </div>
+            
+            <!-- 植物分类导航 -->
+            <div class="plant-categories" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
+                <button class="category-btn active" data-category="all">全部</button>
+                <button class="category-btn" data-category="indoor">室内植物</button>
+                <button class="category-btn" data-category="succulent">多肉植物</button>
+                <button class="category-btn" data-category="flowering">观花植物</button>
+                <button class="category-btn" data-category="foliage">观叶植物</button>
+            </div>
+            
+            <!-- 植物卡片网格 -->
+            <div class="plants-grid">
+                <div class="main-content">
+                    <!-- 植物1 -->
+                    <div class="card plant-card" data-category="indoor">
+                        <div class="plant-image">
+                            <span>绿萝图片</span>
+                        </div>
+                        <h3>绿萝</h3>
+                        <p><strong>科属：</strong>天南星科</p>
+                        <p><strong>习性：</strong>喜阴湿环境，耐阴性强</p>
+                        <p><strong>养护：</strong>每周浇水1-2次，避免阳光直射</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                    
+                    <!-- 植物2 -->
+                    <div class="card plant-card" data-category="succulent">
+                        <div class="plant-image">
+                            <span>仙人掌图片</span>
+                        </div>
+                        <h3>仙人掌</h3>
+                        <p><strong>科属：</strong>仙人掌科</p>
+                        <p><strong>习性：</strong>耐旱，喜阳光</p>
+                        <p><strong>养护：</strong>少浇水，需要充足阳光</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                    
+                    <!-- 植物3 -->
+                    <div class="card plant-card" data-category="indoor">
+                        <div class="plant-image">
+                            <span>吊兰图片</span>
+                        </div>
+                        <h3>吊兰</h3>
+                        <p><strong>科属：</strong>百合科</p>
+                        <p><strong>习性：</strong>适应性强，喜温暖湿润</p>
+                        <p><strong>养护：</strong>保持土壤湿润，适当光照</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                    
+                    <!-- 植物4 -->
+                    <div class="card plant-card" data-category="foliage">
+                        <div class="plant-image">
+                            <span>龟背竹图片</span>
+                        </div>
+                        <h3>龟背竹</h3>
+                        <p><strong>科属：</strong>天南星科</p>
+                        <p><strong>习性：</strong>喜温暖湿润，耐阴</p>
+                        <p><strong>养护：</strong>保持土壤湿润，避免强光</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                
+                    <!-- 植物5 -->
+                    <div class="card plant-card" data-category="succulent">
+                        <div class="plant-image">
+                            <span>芦荟图片</span>
+                        </div>
+                        <h3>芦荟</h3>
+                        <p><strong>科属：</strong>百合科</p>
+                        <p><strong>习性：</strong>耐旱，喜阳光</p>
+                        <p><strong>养护：</strong>少浇水，需要充足光照</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                
+                    <!-- 植物6 -->
+                    <div class="card plant-card" data-category="indoor">
+                        <div class="plant-image">
+                            <span>虎皮兰图片</span>
+                        </div>
+                        <h3>虎皮兰</h3>
+                        <p><strong>科属：</strong>百合科</p>
+                        <p><strong>习性：</strong>耐阴，适应性强</p>
+                        <p><strong>养护：</strong>少浇水，避免积水</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 植物组合页面 - 独立的全屏页面 -->
+    <div id="plant-combinations" class="page-section fullscreen-page">
+        <!-- 自定义头部 -->
+        <div class="custom-header" style="background: #2d5e3b; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="back-to-home-btn" style="background: #a8d5ba; color: #2d5e3b; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                    ← 返回首页
+                </button>
+                <h2 style="margin: 0; color: white;">植物组合</h2>
+                <div style="width: 80px;"></div>
+            </div>
+        </div>
+        
+        <!-- 页面内容 -->
+        <div class="container" style="padding-top: 20px;">
+            
+            <!-- 搜索筛选区 -->
+            <div class="search-filter" style="margin-bottom: 30px; text-align: center;">
+                <input type="text" placeholder="搜索植物组合..." style="padding: 10px; width: 300px; max-width: 100%; border: 1px solid #ddd; border-radius: 4px;">
+                <button class="btn" style="margin-left: 10px;">搜索</button>
+            </div>
+            
+            <!-- 组合分类导航 -->
+            <div class="combination-categories" style="display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
+                <button class="category-btn active" data-category="all">全部组合</button>
+                <button class="category-btn" data-category="indoor">室内装饰组合</button>
+                <button class="category-btn" data-category="office">办公绿化组合</button>
+                <button class="category-btn" data-category="balcony">阳台花园组合</button>
+                <button class="category-btn" data-category="air">净化空气组合</button>
+            </div>
+            
+            <!-- 植物组合卡片网格 -->
+            <div class="combinations-grid">
+                <div class="main-content">
+                    <!-- 组合1 -->
+                    <div class="card combination-card" data-category="air">
+                        <div class="combination-image">
+                            <span>清新空气组合图片</span>
+                        </div>
+                        <h3>清新空气组合</h3>
+                        <p><strong>包含植物：</strong>绿萝、吊兰、虎皮兰</p>
+                        <p><strong>适用场景：</strong>客厅、卧室、办公室</p>
+                        <p><strong>效果：</strong>强力净化空气，增加负氧离子</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                    
+                    <!-- 组合2 -->
+                    <div class="card combination-card" data-category="indoor">
+                        <div class="combination-image">
+                            <span>多肉微景观组合图片</span>
+                        </div>
+                        <h3>多肉微景观组合</h3>
+                        <p><strong>包含植物：</strong>多种多肉植物</p>
+                        <p><strong>适用场景：</strong>桌面、窗台、书架</p>
+                        <p><strong>效果：</strong>小巧精致，易于养护</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                    
+                    <!-- 组合3 -->
+                    <div class="card combination-card" data-category="balcony">
+                        <div class="combination-image">
+                            <span>阳台花园组合图片</span>
+                        </div>
+                        <h3>阳台花园组合</h3>
+                        <p><strong>包含植物：</strong>月季、薰衣草、迷迭香</p>
+                        <p><strong>适用场景：</strong>阳台、露台</p>
+                        <p><strong>效果：</strong>花香四溢，美化环境</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                    
+                    <!-- 组合4 -->
+                    <div class="card combination-card" data-category="office">
+                        <div class="combination-image">
+                            <span>办公室绿化组合图片</span>
+                        </div>
+                        <h3>办公室绿化组合</h3>
+                        <p><strong>包含植物：</strong>仙人掌、芦荟、绿萝</p>
+                        <p><strong>适用场景：</strong>办公桌、会议室</p>
+                        <p><strong>效果：</strong>缓解眼疲劳，净化空气</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                
+                    <!-- 组合5 -->
+                    <div class="card combination-card" data-category="indoor">
+                        <div class="combination-image">
+                            <span>卧室安神组合图片</span>
+                        </div>
+                        <h3>卧室安神组合</h3>
+                        <p><strong>包含植物：</strong>薰衣草、茉莉、芦荟</p>
+                        <p><strong>适用场景：</strong>卧室、休息区</p>
+                        <p><strong>效果：</strong>促进睡眠，放松心情</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                
+                    <!-- 组合6 -->
+                    <div class="card combination-card" data-category="indoor">
+                        <div class="combination-image">
+                            <span>厨房香草组合图片</span>
+                        </div>
+                        <h3>厨房香草组合</h3>
+                        <p><strong>包含植物：</strong>迷迭香、薄荷、罗勒</p>
+                        <p><strong>适用场景：</strong>厨房窗台</p>
+                        <p><strong>效果：</strong>烹饪调味，清新空气</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 增值服务页面 -->
+    <div id="value-added" class="page-section fullscreen-page">
+        <!-- 添加自定义头部 -->
+        <div class="custom-header" style="background: #2d5e3b; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <button class="back-to-home-btn" style="background: #a8d5ba; color: #2d5e3b; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                    ← 返回首页
+                </button>
+                <h2 style="margin: 0; color: white;">增值服务</h2>
+                <div style="width: 80px;"></div> <!-- 占位，保持对称 -->
+            </div>
+        </div>	        
+            
+        <div class="container">
+            <!-- 服务分类 -->
+            <div class="main-content four-cards">
+                <!-- 植物养护服务 -->
+                <div class="card">
+                    <h3>🌱 植物养护服务</h3>
+                    <p>提供专业的植物养护指导，包括浇水、施肥、修剪等基础养护知识。</p>
+                    <a href="#" class="btn">了解详情</a>
+                </div>
+                
+                <!-- 个性化设计 -->
+                <div class="card">
+                    <h3>🎨 绿化设计咨询</h3>
+                    <p>为宿舍、教室提供植物摆放建议，打造舒适的绿色空间。</p>
+                    <a href="#" class="btn">免费咨询</a>
+                </div>
+                
+                <!-- 教育培训 -->
+                <div class="card">
+                    <h3>📚 园艺知识分享</h3>
+                    <p>定期举办植物养护讲座，分享种植技巧和植物知识。</p>
+                    <a href="#" class="btn">查看课程</a>
+                </div>
+                
+                <!-- 定制服务 -->
+                <div class="card">
+                    <h3>💝 植物礼品定制</h3>
+                    <p>为班级活动、朋友生日定制特色植物礼品。</p>
+                    <a href="#" class="btn">立即定制</a>
+                </div>
+            </div>
+            
+            <!-- 服务特色 -->
+            <div class="service-features" style="margin: 50px 0;">
+                <h3 class="section-title">服务特色</h3>
+                <div class="feedback-cards">
+                    <div class="feedback-card">
+                        <h4>🎯 学生专属</h4>
+                        <p>专为学生设计，价格实惠，服务贴心</p>
+                    </div>
+                    <div class="feedback-card">
+                        <h4>⏱️ 快速响应</h4>
+                        <p>线上咨询，快速解答植物养护问题</p>
+                    </div>
+                    <div class="feedback-card">
+                        <h4>🌿 专业指导</h4>
+                        <p>由植物爱好者提供实用养护建议</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	
+	<!-- 产品中心内容 -->
+	<div id="products" class="page-section">
+	    <div class="container">
+	        <div class="main-content">
+	            <!-- 概述部分 -->
+	            <div class="project-intro" style="display: flex; align-items: center; gap: 40px; margin-bottom: 10px; padding: 30px; background: #f8f9fa; border-radius: 10px;">
+	                <!-- 文字内容在左 -->
+	                <div class="project-text" style="flex: 1;text-align: left;">
+	                    <h2 style="color: #2d5e3b; margin-bottom: 20px; font-size: 24px;">概述</h2>
+	                    <p style="line-height: 1.8; margin-bottom: 15px; font-size: 16px; color: #555;">
+	                        绿墙艺创工作室以"鲜植嵌壁新工艺"为核心，推出模块化植物壁画系统，精准服务B端商业客户与C端家庭用户。商业端聚焦二次元展会、购物中心与品牌活动，通过乐高式拼装与智能养护系统，实现快速布展、低成本维护与强互动传播；家庭端则提供即装即用套件与智能设计推荐，满足家居美化、亲子互动与情绪疗愈需求。项目以"标准化模块+双端敏捷服务"构建竞争壁垒，依托专业团队与多元资金规划，同步开拓商业场景与家庭消费双市场，打造自然、艺术与科技融合的绿色空间解决方案。
+	                    </p>
+	                </div>
+	                <div class="project-image" style="flex: 0 0 500px;">
+	                    <img src='images/cpzx1.png' alt="绿墙艺创工作室项目" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+	                </div>
+	            </div>
+	            
+	            <!-- 产品特点区域带背景 -->
+	            <div class="product-features-section">
+	                <!-- 产品特点卡片 -->
+	                <div class="product-features">
+	                    <!-- 基础设计卡片 -->
+	                    <div class="feature-card">
+	                        <div class="feature-image">
+	                            模块化植物壁画 - 基础设计
+	                        </div>
+	                        <div class="feature-content">
+	                            <h3 class="feature-title">基础设计</h3>
+	                            <p class="feature-description" style="text-align: left;">
+	                                这款模块化植物壁画以统一底座为基础，支持批量生产与高效物流，大幅降低成本的同时契合环保理念。独立植物单元如同乐高积木，可自由拼接、更换，局部损坏无需整幅改动，极大简化维护流程。搭配水土分离的棉绳吸水灌溉技术，营养液通过棉绳均匀浸透土壤，避免积水烂根问题，适配商业展会、家庭家居等全场景使用。
+	                            </p>
+	                        </div>
+	                    </div>
+	                    
+	                    <!-- 智能赋能卡片 -->
+	                    <div class="feature-card">
+	                        <div class="feature-image">
+	                            模块化植物壁画 - 智能赋能
+	                        </div>
+	                        <div class="feature-content">
+	                            <h3 class="feature-title">智能赋能</h3>
+	                            <p class="feature-description" style="text-align: left;">
+	                                集成三重智能科技的植物壁画，彻底解决传统绿植"怕养死"的痛点。智能滴灌系统精准控制水量，土壤湿度传感器实时监测植物生长环境，数据同步至手机APP，支持远程查看与操作。无需专人值守，系统可自动调节养护方案，让植物存活率提升至95%，无论是短期商业活动布景还是长期家庭养护，都能轻松应对。
+	                            </p>
+	                        </div>
+	                    </div>
+	                    
+	                    <!-- 健康价值卡片 -->
+	                    <div class="feature-card">
+	                        <div class="feature-image">
+	                            模块化植物壁画 - 健康价值
+	                        </div>
+	                        <div class="feature-content">
+	                            <h3 class="feature-title">健康价值</h3>
+	                            <p class="feature-description" style="text-align: left;">
+	                                这款植物壁画不仅是装饰艺术品，更是健康生活的守护者。绿植可有效吸收室内甲醛等有害物质、释放新鲜氧气，改善空气质量；自然元素能缓解心理压力，营造宁静舒适的空间氛围。同时，它还是亲子自然教育的优质载体，家长可与孩子共同参与植物拼接、养护，在互动中培养孩子的自然认知与审美能力，增进情感联结。
+	                            </p>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            
+	            <!-- 在这里添加居中的文字 -->
+	            <div style="text-align: center; margin: 80px 0 40px 0;">
+	                <h2 style="color: #2d5e3b; font-size: 22px; margin-bottom: 15px;">个性化设计方案类</h2>
+	            </div>
+	            
+	            <!-- 购物中心设计方案 -->
+	            <div class="project-intro" style="display: flex; align-items: center; gap: 40px; margin-bottom: 10px; padding: 30px; background: #f8f9fa; border-radius: 10px;">
+	                <!-- 图片在左 -->
+	                <div class="project-image" style="flex: 0 0 500px; order: 1;">
+	                    <img src='images/cpzx1.png' alt="个性化设计方案类" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+	                </div>
+	                <!-- 文字内容在右 -->
+	                <div class="project-text" style="flex: 1; text-align: left; order: 2;">
+	                    <h2 style="color: #2d5e3b; margin-bottom: 20px; font-size: 24px;">购物中心 / 商业综合体专属设计（季节 / 节日主题 + 品牌联名 + 艺术跨界）</h2>
+	                    <p style="line-height: 1.8; margin-bottom: 15px; font-size: 16px; color: #555;">
+	                        适配商业空间的个性化植物壁画，按季节与节日更新主题：春季以樱花粉、嫩芽绿为主色调，呈现生机感；冬季推出圣诞红绿配色、春节生肖元素，营造节日氛围。可艺术化呈现入驻品牌 Logo、主打产品，助力商业推广；还能与艺术机构合作复刻名画，或联合潮流艺术家打造跨界设计，提升商场艺术调性，吸引消费者打卡传播，拉动客流转化。
+	                    </p>
+	                </div>
+	            </div>
+	            
+	            <!-- 漫展二次元设计方案 -->
+	            <div class="project-intro" style="display: flex; align-items: center; gap: 40px; margin-bottom: 10px; padding: 30px; background: #f8f9fa; border-radius: 10px;">
+	                <!-- 文字内容在左 -->
+	                <div class="project-text" style="flex: 1;text-align: left;">
+	                    <h2 style="color: #2d5e3b; margin-bottom: 20px; font-size: 24px;">漫展二次元活动方专属设计（IP 还原 + 互动文案 + 风格营造）</h2>
+	                    <p style="line-height: 1.8; margin-bottom: 15px; font-size: 16px; color: #555;">
+	                        专为二次元展会量身打造的定制化植物壁画，精准还原热门动漫、游戏的核心角色神态、经典场景（如《原神》须弥花海、《阴阳师》结界等）。融入 "AWSL""YYDS" 等圈内流行语与角色经典台词，设置 UGC 留白区鼓励游客留言签名，增强互动感。可打造赛博朋克、国风武侠等多元风格，自带话题性与传播力，成为展会引流打卡的核心亮点。
+	                    </p>
+	                </div>
+	                <div class="project-image" style="flex: 0 0 500px;">
+	                    <img src='images/cpzx1.png' alt="个性化设计方案类" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+	                </div>
+	            </div>
+	            
+	            <!-- 家庭用户设计方案 -->
+	            <div class="project-intro" style="display: flex; align-items: center; gap: 40px; margin-bottom: 10px; padding: 30px; background: #f8f9fa; border-radius: 10px;">
+	                <!-- 图片在左 -->
+	                <div class="project-image" style="flex: 0 0 500px; order: 1;">
+	                    <img src='images/cpzx1.png' alt="个性化设计方案类" style="width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+	                </div>
+	                <!-- 文字内容在右 -->
+	                <div class="project-text" style="flex: 1; text-align: left; order: 2;">
+	                    <h2 style="color: #2d5e3b; margin-bottom: 20px; font-size: 24px;">家庭用户专属设计（情感疗愈 + 社交聚会 + 亲子互动 + 烹饪需求）</h2>
+	                    <p style="line-height: 1.8; margin-bottom: 15px; font-size: 16px; color: #555;">
+	                        针对家庭不同需求与空间，提供多元风格设计。情感疗愈款选用低饱和度植物搭配柔和灯光，打造宁静休憩角落；社交聚会款按家居主色调选择互补色植物，拼搭简约焦点图案，成为家庭聚会的视觉核心；亲子互动款搭配含羞草等互动植物，预留小黑板、成长相框区，增强童趣；烹饪需求款在厨房窗边布置薄荷、小葱、香菜等香草植物，方便烹饪时随手采摘，兼具实用性与装饰性。
+	                    </p>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+    
+    <!-- 产品应用内容 -->
+    <div id="applications" class="page-section">
+        <div class="container">
+            <div class="main-content">
+				<!--
+                <div class="card">
+                    <h3>家居装饰</h3>
+                    <p>如何利用植物打造温馨舒适的家居环境。</p>
+                    <a href="#" class="btn">学习应用</a>
+                </div>
+                <div class="card">
+                    <h3>办公绿化</h3>
+                    <p>办公室植物摆放技巧，提升工作效率。</p>
+                    <a href="#" class="btn">学习应用</a>
+                </div>
+                <div class="card">
+                    <h3>园艺疗法</h3>
+                    <p>植物对心理健康的积极影响及应用方法。</p>
+                    <a href="#" class="btn">学习应用</a>
+                </div>
+				-->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 关于我们内容 -->
+    <div id="contact" class="page-section">
+        <div class="feedback-section">
+            <div class="container">
+                <h2 class="section-title">绿墙艺创工作室</h2>
+				<!-- 新增的文章内容 -->
+				<div class="article-content" style="max-width: 800px; margin: 0 auto 40px; padding: 0 20px;">
+					绿墙艺创工作室是一家构想中专注于绿色艺术设计、定制实施的创新型设计工作室，以齐家网、住小帮等设计平台或小红书、抖音等社交平台参考预约的模式，面向商业综合体、品牌方等企业用户和追求生活美学的消费者群体，提供植物壁画艺术的定制设计以及养护服务。公司借助绿植墙模块化安装技术、建立起以植物壁画艺术定制设计为核心、集艺术设计，植材甄选到后期养护环环相扣，为顾客打造兼具艺术观赏性与生态功能性的“活体墙面艺术”。
+				</div>
+                <div class="feedback-cards">
+                    <div class="feedback-card">
+                        <h3>在线留言</h3>
+                        <p>如果您有任何问题或建议，欢迎给我们留言。</p>
+                        <button class="btn feedback-btn" style="margin-top: 15px;">留言反馈</button>
+                    </div>
+                    <div class="feedback-card">
+                        <h3>关注我们</h3>
+                        <p>关注我们的社交媒体获取最新信息。</p>
+                        <a href="#" class="btn">关注</a>
+                    </div>
+                    <div class="feedback-card">
+                        <h3>联系方式</h3>
+                        <p>电话：123-4567-8910</p>
+                        <p>邮箱：contact@example.com</p>
+                        <p>地址：某某市某某区某某路</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 留言反馈页面 -->
+    <div id="feedback-form" class="page-section">
+        <div class="feedback-form-section">
+            <div class="container">
+                <div class="feedback-form-container">
+                    <h2>发表评论</h2>
+                    <div id="commentAuthStatus" class="auth-status" style="margin-bottom: 20px; padding: 10px; border-radius: 4px; text-align: center;">
+                        <!-- 认证状态将在这里显示 -->
+                    </div>
+                    <form id="commentForm">
+                        <div class="form-group">
+                            <label for="comment">评论内容</label>
+                            <textarea id="comment" name="comment" placeholder="请输入您的评论..." required minlength="5" maxlength="500"></textarea>
+                            <div style="text-align: right; font-size: 12px; color: #666; margin-top: 5px;">
+                                <span id="charCount">0</span>/500
+                            </div>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitCommentBtn">发表评论</button>
+                    </form>
+                    <div id="commentList" style="margin-top: 30px;">
+                        <h3>所有评论</h3>
+                        <div class="comments-container">
+                            <!-- 评论列表将在这里动态显示 -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 登录页面 -->
+    <div id="login-page" class="page-section">
+        <div class="feedback-form-section"> <!-- 复用现有表单区域样式 -->
+            <div class="container">
+                <div class="feedback-form-container">
+                    <h2>用户登录</h2>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <label for="loginEmail">邮箱</label>
+                            <input type="email" id="loginEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">密码</label>
+                            <input type="password" id="loginPassword" name="password" required>
+                        </div>
+                        <button type="submit" class="submit-btn">登录</button>
+                        <p style="margin-top: 15px; text-align: center;">
+                            还没有账号？<a href="#" id="switchToRegister" style="color: #2d5e3b; cursor: pointer;">点击注册</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 注册页面 -->
+    <div id="register-page" class="page-section">
+        <div class="feedback-form-section">
+            <div class="container">
+                <div class="feedback-form-container">
+                    <h2>用户注册</h2>
+                    <form id="registerForm">
+                        <div class="form-group">
+                            <label for="registerEmail">邮箱</label>
+                            <input type="email" id="registerEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="registerPassword">密码</label>
+                            <input type="password" id="registerPassword" name="password" required>
+                        </div>
+                        <button type="submit" class="submit-btn">注册</button>
+                        <p style="margin-top: 15px; text-align: center;">
+                            已有账号？<a href="#" id="switchToLogin" style="color: #2d5e3b; cursor: pointer;">点击登录</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>植拼物语 © 2025 版权所有</p>
+        </div>
+    </footer>        
+
+    <script src="js/main.js"></script>
+</body>
+</html>

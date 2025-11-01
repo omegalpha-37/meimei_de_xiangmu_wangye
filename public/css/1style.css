@@ -32,14 +32,17 @@
 
     /* 浅色背景图 - 下部 */
     .light-bg {
-      position: fixed;
+      position: fixed;  /*absolute跟随页面一起滑动*/
       top: 0;
       left: 0;
       width: 100%;
       height: 100vh;
-      /*background-image: url('https://picsum.photos/id/1039/1920/1080');*/
-      background-color: #c6ddc3;
-      background-size: cover;
+      background-image: url('../images/bkg11.jpg');
+      /*background: linear-gradient(135deg, #e9f4ec 0%, #d4e8d9 100%);*/
+      /*background-color: #c6ddc3;*/
+      background-attachment: scroll;
+      background-size: contain;
+      background-repeat: repeat;
       background-position: center;
       z-index: -1; /*用-1进一步降低优先级*/
     }
@@ -47,7 +50,7 @@
     /*标记点*/
     .marker {
       position: absolute;
-      top: 500px;
+      top: 10px;/*无影响*/
       left: 0;
       width: 100%;
       height: 2px;
@@ -180,6 +183,20 @@
             gap: 10px;
             align-items: center;
             justify-items: center;
+        }
+
+        .dark-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('../images/bkg2.jpg');
+            background-size: contain;
+            background-repeat: repeat;
+            background-position: center top;
+            z-index: 0;
+            transition: opacity 0.3s ease;
         }
         
         .logo {
@@ -648,8 +665,9 @@
 	
 	/* 产品中心特色区域背景 */
 	.product-features-section {
-	    background: linear-gradient(135deg, #e9f4ec 0%, #d4e8d9 100%);
+	    /*background: linear-gradient(135deg, #e9f4ec 0%, #d4e8d9 100%);*/
 	    padding: 40px 0;
+        background: transparent;
 	    margin: 10px 0;
 	    position: relative;
 	}
@@ -662,7 +680,8 @@
 	    left: 0;
 	    right: 0;
 	    bottom: 0;
-	    background: linear-gradient(135deg, #e9f4ec 0%, #d4e8d9 100%);
+	    /*background: linear-gradient(135deg, #e9f4ec 0%, #d4e8d9 100%);*/
+        background: transparent;
 	    z-index: -1;
 	    width: 100vw;
 	    left: 50%;
@@ -688,7 +707,10 @@
 	}
 	
 	.feature-card {
-	    background: white;
+	    /*background: white;*/
+        /*整张卡片应用此背景或是仅文本区域应用？*/
+        background-image: url('../images/card-bkg2.jpg');
+        background-size: 100% 100%;
 	    border-radius: 10px;
 	    overflow: hidden;
 	    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -707,7 +729,7 @@
 	
 	.feature-image {
 	    height: 220px;
-	    background-color: #e8f5e9;
+	    /*background-color: #e8f5e9;*/
 	    display: flex;
 	    align-items: center;
 	    justify-content: center;
@@ -715,9 +737,41 @@
 		color: #2d5e3b;
 		font-weight: bold;
 		font-size: 14px;
+        position: relative;
 	}
-	
+    
+    /* 渐变遮罩效果 
+    .feature-image::after {
+        content: '';
+        position: absolute;
+        top: 10%;
+        right: 10%;
+        left: 10%;
+        bottom: 0;
+        width: 50px;
+        background: linear-gradient(to right, transparent, white);
+        pointer-events: none;
+    }
+    
+    .feature-image img {
+        width: 80%;
+        height: 80%;
+        object-fit: contain;
+        object-position: 50% 50%;
+        display: block;
+        transform: scale(1.5); /* 图片放大效果 
+        transform-origin: center center;
+        transition: transform 0.3s ease;
+    }
+    
+    .feature-card:hover .feature-image img {
+        transform: scale(1.6); /* 悬停时进一步放大 
+    }
+    */
+
 	.feature-content {
+        /*background-image: url('../images/card-bkg2.jpg');
+        background-size: 100% 100%;*/
 	    padding: 15px 20px;
 	    flex-grow: 1;
 	    display: flex;
@@ -759,7 +813,7 @@
     
     /* 客户反馈区域 */
     .feedback-section {
-        background-color: #e9f4ec;
+        background-color: transparent;/*#e9f4ec;*/
         padding: 40px 0;
         margin: 40px 0;
     }
@@ -968,6 +1022,22 @@
     body.value-added-active nav {
         display: none !important;
     }
+
+    body.plant-library-active .dark-bg,
+    body.plant-combinations-active .dark-bg,
+    body.value-added-active .dark-bg {
+        background-image: none !important;
+        background-color: transparent; /* 替换为你的浅色背景图 */
+        /* 若无需图片，可改为纯色背景：background-color: #f0f7f2; */
+    }
+
+    body.plant-library-active .light-bg,
+    body.plant-combinations-active .light-bg,
+    body.value-added-active .light-bg {
+        /*background-image: none !important;*/
+        background-color: transparent; /* 替换为你的浅色背景图 */
+        /* 若无需图片，可改为纯色背景：background-color: #f0f7f2; */
+    }
     
     body.plant-library-active footer,
     body.value-added-active footer {
@@ -1024,14 +1094,45 @@
     
     #plant-library .plant-image {
         height: 200px;
-        background: #e9f4ec;
+        /*background: #e9f4ec;*/
         display: flex;
         align-items: center;
         justify-content: center;
         color: #2d5e3b;
-        margin: -20px -20px 20px -20px;
+        /*margin: -20px -20px 20px -20px;*/
         border-radius: 8px 8px 0 0;
         font-weight: bold;
+        overflow: hidden;
+        max-height: 50%;
+    }
+    
+    /* 渐变遮罩效果 */
+    .plant-image::after {
+        content: '';
+        position: absolute;
+        /*top: 0;*/
+        right: 0;
+        left: 0;
+        bottom: 300px;
+        /*width: 50px;*/
+        height: 50px;
+        background: linear-gradient(to bottom, transparent, white);
+        pointer-events: none;
+    }
+    
+    .plant-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: 50% 50%;
+        /*display: block;*/
+        transform: scale(1.5); /* 图片放大效果 */
+        transform-origin: center center;
+        transition: transform 0.3s ease;
+    }
+    
+    .plant-card:hover .plant-image img {
+        transform: scale(1.6); /* 悬停时进一步放大 */
     }
     
     /* 植物分类按钮样式 */

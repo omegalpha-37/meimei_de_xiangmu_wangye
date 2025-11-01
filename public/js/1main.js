@@ -92,14 +92,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // 监听页面滚动事件
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
-        const markerPosition = 200;
+        const markerPosition = 150;
         let opacity;
         if (scrollY < markerPosition) {
             opacity = 1;
-        } else if (scrollY > markerPosition + 300) {
+        } else if (scrollY > markerPosition + 200) {
             opacity = 0;
         } else {
-            opacity = 1 - (scrollY - markerPosition) / 300;
+            opacity = 1 - (scrollY - markerPosition) / 200;
         }
         darkBg.style.opacity = opacity;
     });

@@ -92,14 +92,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // 监听页面滚动事件
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
-        const markerPosition = 200;
+        const markerPosition = 150;
         let opacity;
         if (scrollY < markerPosition) {
             opacity = 1;
-        } else if (scrollY > markerPosition + 300) {
+        } else if (scrollY > markerPosition + 200) {
             opacity = 0;
         } else {
-            opacity = 1 - (scrollY - markerPosition) / 300;
+            opacity = 1 - (scrollY - markerPosition) / 200;
         }
         darkBg.style.opacity = opacity;
     });
@@ -301,6 +301,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
             
+            
             // 增值服务按钮
             document.querySelector('.horizontal-card:nth-child(3) .btn')?.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -321,6 +322,15 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('switchToLogin')?.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.showSection('login-page', 'right');
+            });
+
+            // 关闭登录/注册悬浮弹窗
+            document.querySelectorAll('.close-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // 关闭时返回首页（可根据需求改为其他页面）
+                this.showSection('home', 'right');
+                });
             });
             
             // 登录按钮

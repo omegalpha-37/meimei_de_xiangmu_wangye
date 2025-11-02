@@ -300,6 +300,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.showSection('home', 'right');
                 });
             });
+
+            
             
             // 增值服务按钮
             document.querySelector('.horizontal-card:nth-child(3) .btn')?.addEventListener('click', (e) => {
@@ -321,6 +323,15 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('switchToLogin')?.addEventListener('click', (e) => {
                 e.preventDefault();
                 this.showSection('login-page', 'right');
+            });
+
+            // 关闭登录/注册悬浮弹窗
+            document.querySelectorAll('.close-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                // 关闭时返回首页（可根据需求改为其他页面）
+                this.showSection('home', 'right');
+                });
             });
             
             // 登录按钮
@@ -498,13 +509,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // 特殊页面样式处理
             if (sectionId === 'plant-library' || sectionId === 'plant-combinations') {
                 document.body.classList.add('plant-library-active');
-                document.body.classList.remove('value-added-active');
+                document.body.classList.remove('value-added-active', 'login-page-active', 'register-page-active');
             } else if (sectionId === 'value-added') {
-                document.body.classList.add('value-added-active');
+                document.body.classList.add('value-added-active', 'login-page-active', 'register-page-active');
                 document.body.classList.remove('plant-library-active');
+            } else if (sectionId === 'login-page'){
+                document.body.classList.add('login-page-active');
+                document.body.classList.remove('plant-library-active', 'value-added-active', 'register-page-active');
+            } else if(sectionId === 'register-page'){
+                document.body.classList.add('register-page-active');
+                document.body.classList.remove('plant-library-active', 'value-added-active', 'login-page-active');
             } else {
-                document.body.classList.remove('plant-library-active');
-                document.body.classList.remove('value-added-active');
+                document.body.classList.remove('plant-library-active', 'value-added-active', 'login-page-active', 'register-page-active');
             }
             
             // 评论页面处理

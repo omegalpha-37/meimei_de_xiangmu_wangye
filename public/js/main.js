@@ -87,21 +87,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 全局背景切换效果
+    // 全局背景切换效果//附加产品应用页面的目录隐藏浮现
     const darkBg = document.querySelector('.dark-bg');
+    const muluye = document.querySelector('.applications-sidebar')
     // 监听页面滚动事件
     window.addEventListener('scroll', () => {
         const scrollY = window.scrollY;
         const markerPosition = 150;
         let opacity;
+        let mulu_opacity;
+        let mulu_pointer;
         if (scrollY < markerPosition) {
             opacity = 1;
+            mulu_opacity=0;
+            mulu_pointer='none';
         } else if (scrollY > markerPosition + 200) {
             opacity = 0;
+            mulu_opacity=1;
+            mulu_opacity='auto';
         } else {
             opacity = 1 - (scrollY - markerPosition) / 200;
+            mulu_opacity=(scrollY - markerPosition) / 200;
+            mulu_pointer='auto';
         }
         darkBg.style.opacity = opacity;
+        muluye.style.opacity=mulu_opacity;
+        muluye.style.pointerEvents=mulu_pointer;
     });
 
     // 评论系统类
@@ -160,6 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 植物数据管理类
     class PlantManager {
+
         constructor() {
             this.plants = [];
             this.categories = ['all', 'indoor', 'outdoor', 'succulent', 'flowering'];
@@ -203,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 container.innerHTML = '<div class="no-plants">暂无植物数据</div>';
                 return;
             }
-            
+            /*这是什么？ */
             container.innerHTML = plants.map(plant => `
                 <div class="plant-card" data-category="${plant.category}">
                     <div class="plant-image">
@@ -300,6 +312,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.showSection('home', 'right');
                 });
             });
+
             
             
             // 增值服务按钮
@@ -508,13 +521,18 @@ document.addEventListener('DOMContentLoaded', function() {
             // 特殊页面样式处理
             if (sectionId === 'plant-library' || sectionId === 'plant-combinations') {
                 document.body.classList.add('plant-library-active');
-                document.body.classList.remove('value-added-active');
+                document.body.classList.remove('value-added-active', 'login-page-active', 'register-page-active');
             } else if (sectionId === 'value-added') {
-                document.body.classList.add('value-added-active');
+                document.body.classList.add('value-added-active', 'login-page-active', 'register-page-active');
                 document.body.classList.remove('plant-library-active');
+            } else if (sectionId === 'login-page'){
+                document.body.classList.add('login-page-active');
+                document.body.classList.remove('plant-library-active', 'value-added-active', 'register-page-active');
+            } else if(sectionId === 'register-page'){
+                document.body.classList.add('register-page-active');
+                document.body.classList.remove('plant-library-active', 'value-added-active', 'login-page-active');
             } else {
-                document.body.classList.remove('plant-library-active');
-                document.body.classList.remove('value-added-active');
+                document.body.classList.remove('plant-library-active', 'value-added-active', 'login-page-active', 'register-page-active');
             }
             
             // 评论页面处理

@@ -80,7 +80,7 @@
         justify-content: space-between;
         align-items: center;
         gap: 20px;
-        padding-right: 25%;
+        padding-right: 30%;
         position: relative;
     }
     
@@ -102,10 +102,10 @@
     .search-bar {
         display: flex;
         min-width: 250px;
-        max-width: 400px;
+        max-width: 500px;
         flex: 1; 
-        margin-left: 40%;
-        margin: 0;
+        margin-left: 20%;
+        /*margin: 0;*/
     }
     
     /* 搜索框毛玻璃效果 - 来自第二个文件 */
@@ -188,7 +188,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        
+        /*background-color: rgba(0, 0, 0, 0.3);*/
+        /*backdrop-filter: blur(3px);*/
         /*background-color: rgba(0, 0, 0, 0.5); /* 半透明遮罩 */
         /*background-size: 200%;*/
         display: flex;
@@ -216,13 +217,17 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* 增强阴影 */
         transform: translateY(-20px);
         transition: transform 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 8px;
+        box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        z-index: 1;
     }
 
-    /* 4. 表单显示时的动画 
+    /* 4. 表单显示时的动画 */
     .page-section#login-page.active .feedback-form-container,
     .page-section#register-page.active .feedback-form-container {
         transform: translateY(0);
-    }*/
+    }
 
     /* 5. 关闭按钮样式 */
     .close-btn {
@@ -247,6 +252,7 @@
             grid-template-columns: 1fr auto 1fr;
             grid-template-rows: auto auto;
             gap: 10px;
+            padding-right: 5%;
             align-items: center;
             justify-items: center;
         }
@@ -901,6 +907,177 @@
         padding: 20px;
         border-radius: 8px;
     }
+
+    /* 产品应用页面布局 */
+    .applications-layout {
+        display: flex;
+        gap: 30px;
+        padding: 20px 0;
+    }
+
+    /* 左侧固定目录 */
+    .applications-sidebar {
+        width: 15%;
+        position: fixed;
+        top: auto; /* 根据实际导航栏高度调整 */
+        bottom: 20px;
+        overflow-y: auto; /* 目录过长时可滚动 */
+        padding: 20px;
+        background: transparent;/*#f8f9fa;*/
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s ease;
+    }
+
+    .applications-sidebar h3 {
+        color: #2d5e3b;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #a8d5ba;
+    }
+
+    .applications-sidebar ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .applications-sidebar li {
+        margin-bottom: 12px;
+    }
+
+    .applications-sidebar a {
+        color: #555;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .applications-sidebar a:hover,
+    .applications-sidebar a.active {
+        color: #2d5e3b;
+        font-weight: bold;
+    }
+
+    /* 右侧内容区域 */
+    .applications-content {
+        flex: 1;
+        margin-left: 25%; /* 与左侧目录宽度保持一致，确保内容不被遮挡 */
+        padding: 0 20px;
+    }
+
+    .applications-content section {
+        margin-bottom: 60px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+    }       
+
+    /* 产品应用页内容区图片样式 */
+    .applications-content img {
+        max-width: 100%; /* 图片最大宽度不超过父容器（避免超出右侧内容区） */
+        height: auto; /* 保持图片宽高比，不拉伸变形 */
+        border-radius: 8px; /* 轻微圆角，和页面卡片风格统一 */
+        margin: 15px 0; /* 上下预留间距，避免和文字紧贴 */
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3); /* 轻微阴影，增强立体感 */
+    }
+
+    /* 居中显示图片（适合单张主图） */
+    .applications-content .img-center {
+        display: block;
+        margin: 20px 20px 20px 60px; /* 上下20px间距，左右自动居中 */
+        max-width: 70%; /* 可选：限制图片最大宽度为内容区的80%，留边更美观 */
+    }
+
+    /* 左对齐图片（文字环绕） */
+    .applications-content .img-left {
+        float: left;
+        width: 55%; /* 图片宽度占内容区40% */
+        margin: 10px 20px 10px 0; /* 右、下留间距，避免文字紧贴 */
+    }
+
+    /* 清除文字环绕，让内容另起一段 */
+    .applications-content .clear-float {
+        clear: both; /* 清除左右两侧的浮动影响 */
+        margin-top: 15px; /* 可选：与上一段保持间距 */
+    }
+
+    /* 多图并排（如2张/3张图片并列） */
+    .applications-content .img-group {
+        display: flex;
+        gap: 15px; /* 图片之间的间距 */
+        margin: 10px 0;
+        flex-wrap: wrap; /* 屏幕变小时自动换行，不挤压 */
+    }
+
+    .applications-content .img-group img {
+        flex: 1;
+        min-width: 200px; /* 最小宽度，避免换行后图片过小 */
+    }
+
+    /* 在style.css中添加 */
+    /* 给所有锚点目标元素设置顶部偏移 */
+    .applications-content section,
+    .applications-content div[id] {
+        scroll-margin-top: 100px; /* 定位时向上偏移30px（即目标位置比默认低30px） */
+    }
+
+    .applications-content h2 {
+        color: #2d5e3b;
+        margin-bottom: 20px;
+    }
+
+    /* 一级目录（大目录）容器 */
+    .applications-sidebar .main-catalog {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* 一级目录项间距 */
+    .applications-sidebar .main-catalog > li {
+        margin-bottom: 20px; /* 大目录之间间隔更大 */
+    }
+
+    /* 一级目录链接样式（突出显示） */
+    .applications-sidebar .main-link {
+        color: #2d5e3b; /* 主色调 */
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        display: block; /* 独占一行，点击区域更大 */
+        padding: 5px 0;
+    }
+
+    .applications-sidebar .main-link:hover {
+        color: #1a472a; /* 加深颜色 */
+    }
+
+    /* 二级目录（小目录）容器 */
+    .applications-sidebar .sub-catalog {
+        list-style: none;
+        padding: 8px 0 0 15px; /* 左缩进，区分层级 */
+        margin: 0;
+    }
+
+    /* 二级目录项间距 */
+    .applications-sidebar .sub-catalog li {
+        margin-bottom: 8px; /* 小目录之间间隔更小 */
+    }
+
+    /* 二级目录链接样式（次要显示） */
+    .applications-sidebar .sub-catalog a {
+        color: #555; /* 灰色，弱化显示 */
+        font-size: 14px; /* 字体更小 */
+        text-decoration: none;
+        padding: 3px 0;
+        display: block;
+    }
+
+    .applications-sidebar .sub-catalog a:hover {
+        color: #2d5e3b; /*  hover时关联主色调 */
+        padding-left: 5px; /* 轻微左移，增强交互感 */
+        transition: padding-left 0.2s;
+    }
     
     /* 评论相关样式 */
     .comments-container {
@@ -1086,8 +1263,12 @@
     body.plant-library-active nav,
     body.value-added-active header,
     body.value-added-active nav,
+    body.login-page-active header,
+    body.login-page-active nav,
+    body.register-page-active header,
+    body.regisert-page-active nav ,
     #login-page .header,
-    #register-page .header {
+    #register-page .header{
         display: none !important;
     }
 
@@ -1106,6 +1287,13 @@
         background-color: transparent; /* 替换为你的浅色背景图 */
         /* 若无需图片，可改为纯色背景：background-color: #f0f7f2; */
     }
+
+    body.login-active .dark-bg,
+    body.register-active .dark-bg,
+    body.login-active .light-bg,
+    body.register-active .light-bg {
+        background-color: transparent !important;
+}
     
     body.plant-library-active footer,
     body.value-added-active footer {
@@ -1153,6 +1341,17 @@
         transition: all 0.3s ease;
         width: 100% !important;
         margin: 0 !important;
+    }
+
+    /*.plant-card{
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }*/
+
+    .plant-card.zoomed {
+        transform: scale(1.1);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        z-index: 1000;
+        position: relative;
     }
     
     #plant-library .plant-card:hover {

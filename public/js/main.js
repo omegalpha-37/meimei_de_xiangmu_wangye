@@ -281,11 +281,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
             
-            // 卡片点击事件
+            // 在首页卡片点击时保存当前位置
             const horizontalCards = document.querySelectorAll('.horizontal-card');
             horizontalCards.forEach(card => {
                 card.addEventListener('click', (e) => {
                     e.preventDefault();
+                    // 保存当前位置
+                    homeScrollPosition = window.scrollY || document.documentElement.scrollTop;
+                    console.log('点击卡片，保存首页位置:', homeScrollPosition);
                     const targetId = card.getAttribute('data-target');
                     if (targetId) {
                         this.showSection(targetId, 'left');
@@ -305,15 +308,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.showSection('plant-combinations', 'left');
             });
             
-            // 返回首页按钮
+            // 返回首页按钮 - 使用保存的位置
             document.querySelectorAll('.back-to-home-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();
                     this.showSection('home', 'right');
+                    
+                    // 在showSection完成后恢复位置
+                    setTimeout(() => {
+                        if (homeScrollPosition > 0) {
+                            window.scrollTo({
+                                top: homeScrollPosition,
+                                behavior: 'smooth'
+                            });
+                            homeScrollPosition = 0; // 使用后重置
+                        }
+                    }, 200);
                 });
             });
-
-            
             
             // 增值服务按钮
             document.querySelector('.horizontal-card:nth-child(3) .btn')?.addEventListener('click', (e) => {
@@ -458,50 +470,45 @@ document.addEventListener('DOMContentLoaded', function() {
         
         showSection(sectionId, direction) {
             console.log('切换到页面:', sectionId);
-            
-            // 首页滚动位置处理
-            if (document.getElementById('home').classList.contains('active') && sectionId !== 'home') {
-                homeScrollPosition = window.scrollY || document.documentElement.scrollTop;
-                console.log('保存首页位置:', homeScrollPosition);
-            }
-            
-            // 返回首页时恢复滚动位置
-            if (sectionId === 'home' && homeScrollPosition > 0) {
-                window.scrollTo({
-                    top: homeScrollPosition,
-                    behavior: 'instant'
-                });
-                console.log('恢复首页位置:', homeScrollPosition);
-            }
-            
-            // 隐藏所有页面
-            this.sections.forEach(section => {
-                section.style.display = 'none';
-                section.classList.remove('active', 'slide-left', 'slide-right');
-            });
-            
-            // 显示目标页面
-            const targetSection = document.getElementById(sectionId);
-            if (targetSection) {
-                targetSection.style.display = 'block';
-                
-                // 添加动画
-                if (direction === 'left') {
-                    targetSection.classList.add('slide-left');
-                } else if (direction === 'right') {
-                    targetSection.classList.add('slide-right');
-                }
-                
-                setTimeout(() => {
-                    targetSection.classList.add('active');
-                    
-                    // 全屏页面滚动到顶部
-                    if (targetSection.classList.contains('fullscreen-page')) {
-                        window.scrollTo(0, 0);
-                    }
-                }, 50);
-            }
-            
+			
+			// 首页滚动位置处理 - 先保存当前位置
+			if (document.getElementById('home').classList.contains('active') && sectionId !== 'home') {
+				homeScrollPosition = window.scrollY || document.documentElement.scrollTop;
+				console.log('保存首页位置:', homeScrollPosition);
+			}
+			
+			// 隐藏所有页面
+			this.sections.forEach(section => {
+				section.style.display = 'none';
+				section.classList.remove('active', 'slide-left', 'slide-right');
+			});
+			
+			// 显示目标页面
+			const targetSection = document.getElementById(sectionId);
+			if (targetSection) {
+				targetSection.style.display = 'block';
+				
+				// 添加动画
+				if (direction === 'left') {
+					targetSection.classList.add('slide-left');
+				} else if (direction === 'right') {
+					targetSection.classList.add('slide-right');
+				}
+				
+				setTimeout(() => {
+				    targetSection.classList.add('active');
+				    
+				    setTimeout(() => {
+				        // 所有导航按钮点击都滚动到页面顶部
+				        window.scrollTo({
+				            top: 0,
+				            behavior: 'smooth'
+				        });
+				    }, 100);
+				    
+				}, 50);
+			}
+		
             // 更新导航按钮状态
             this.navButtons.forEach(button => {
                 button.classList.remove('active');

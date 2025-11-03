@@ -764,11 +764,13 @@
 	
 	/* ========== 产品特点卡片样式 ========== */
 	.product-features {
+        
 	    display: flex;
 	    flex-wrap: nowrap;
 	    gap: 20px;
 	    margin: 20px 0;
 	    justify-content: center;
+        
 		overflow-x: auto;
 	}
 	
@@ -778,19 +780,20 @@
 
 	
 	.feature-card {
+        
 	    /*background: white;*/
-        /*整张卡片应用此背景或是仅文本区域应用？*/
+        height: 500px;
+        width: 200%;
         background-size: 100% 100%;
 	    border-radius: 10px;
 	    overflow: hidden;
 	    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 	    transition: transform 0.3s ease, box-shadow 0.3s ease;
-	    flex: 1;
-	    min-width: 280px;
-	    max-width: 350px;
+	    
+	    /*min-width: 280px;
+	    max-width: 350px;*/
 	    display: flex;
 	    flex-direction: column;
-		width: 100%;
 	}
 	
 	.feature-card:hover {
@@ -810,35 +813,6 @@
 		font-size: 14px;
         position: relative;
 	}
-    
-    /* 渐变遮罩效果 
-    .feature-image::after {
-        content: '';
-        position: absolute;
-        top: 10%;
-        right: 10%;
-        left: 10%;
-        bottom: 0;
-        width: 50px;
-        background: linear-gradient(to right, transparent, white);
-        pointer-events: none;
-    }
-    
-    .feature-image img {
-        width: 80%;
-        height: 80%;
-        object-fit: contain;
-        object-position: 50% 50%;
-        display: block;
-        transform: scale(1.5); /* 图片放大效果 
-        transform-origin: center center;
-        transition: transform 0.3s ease;
-    }
-    
-    .feature-card:hover .feature-image img {
-        transform: scale(1.6); /* 悬停时进一步放大 
-    }
-    */
 
 	.feature-content {
         /*background-image: url('../images/card-bkg2.jpg');
@@ -863,7 +837,7 @@
 	    flex-grow: 1;
 		font-size: 14px;
 	}
-	
+	/*统一设置文本阴影白边*/
 	.feature-title, .feature-description {
 	    text-shadow: 
 	        1px 1px 2px white,
@@ -873,6 +847,7 @@
 	}
 	
 	/* 响应式调整 */
+    /*响应式调整此处，页面不缩放*/
 	@media (max-width: 768px) {
 	    .product-features {
 			flex-direction: row;
@@ -905,16 +880,29 @@
 	}
 	
 	.applications-sidebar {
+        width: 15%;
 	    flex: 0 0 200px;
-	    background: #f8f9fa;
+	    background: transparent;/* #f8f9fa;*/
 	    padding: 20px;
 	    border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        opacity: 1;
+        /*position: fixed;*/
 	    position: sticky;
 	    top: 120px;
+        pointer-events: auto;
 		height: fit-content;
 		max-height: calc(100vh - 140px);
 		overflow-y: auto;
+        transition: all 0.3s ease;
 	}
+
+    .applications-sidebar h3 {
+        color: #2d5e3b;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #a8d5ba;
+    }
 	
 	/* 产品应用页面图片大小限制 */
 	#applications img {
@@ -924,7 +912,9 @@
 	
 	/* 去掉产品应用目录下划线 */
 	.applications-sidebar a {
-	    text-decoration: none;
+	    color: #555;
+        text-decoration: none;
+        transition: color 0.3s;
 	}
 	
 	.applications-sidebar a:hover {
@@ -954,6 +944,10 @@
 		
 		.applications-sidebar h3 {
 			font-size: 16px;
+            color: #2d5e3b;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #a8d5ba;
 		}
 		
 		.applications-sidebar ul {
@@ -1171,7 +1165,11 @@
     body.value-added-active header,
     body.value-added-active nav,
     #login-page .header,
-    #register-page .header {
+    #register-page .header ,
+    body.login-page-active header,
+    body.login-page-active nav,
+    body.register-page-active header,
+    body.regisert-page-active nav {
         display: none !important;
     }
 
@@ -1237,6 +1235,13 @@
         transition: all 0.3s ease;
         width: 100% !important;
         margin: 0 !important;
+    }
+
+    .plant-card.zoomed {
+        transform: scale(1.1);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        z-index: 1000;
+        position: relative;
     }
     
     #plant-library .plant-card:hover {

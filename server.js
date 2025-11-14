@@ -4,6 +4,8 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const serverless = require('serverless-http');
 
+require('dotenv').config();
+
 const app = express();
 
 // CORS 中间件
@@ -61,3 +63,11 @@ app.use((err, req, res, next) => {
 
 // 导出给 serverless-http
 module.exports.handler = serverless(app);
+
+// 本地开发时监听端口
+if (require.main === module) {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`服务器运行在 http://localhost:${PORT}`);
+    });
+}

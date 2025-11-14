@@ -2,10 +2,11 @@
   "name": "plant-story-backend",
   "version": "1.0.0",
   "description": "植拼物语网站后端",
-  "main": "index.js",
+  "": "===vercel服务器将server.js改为index.js===",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js",
+    "start": "node server.js",
+    "dev": "node server.js",
     "build": "echo 'No build step needed' && exit 0"
   },
   "dependencies": {

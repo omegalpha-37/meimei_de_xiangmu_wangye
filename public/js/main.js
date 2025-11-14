@@ -298,6 +298,37 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
 
+            //售后保障页面
+            document.querySelector('.qwer-packages-btn')?.addEventListener('click', () => {
+                const container = document.querySelector('.baozhang-package-container');
+                const header = document.querySelector('header');
+                const nav = document.querySelector('nav');
+    
+                if (container) {
+                    container.classList.add('active');
+                    // 隐藏头部和导航栏
+                    if (header) header.style.display = 'none';
+                    if (nav) nav.style.display = 'none';
+                    // 阻止页面滚动
+                    document.body.style.overflow = 'hidden';
+                }   
+            });
+
+            // 关闭套餐容器
+            document.querySelector('.close-package-btn')?.addEventListener('click', () => {
+                const container = document.querySelector('.bz-package-container');
+                const header = document.querySelector('header');
+                const nav = document.querySelector('nav');
+                
+                if (container) {
+                    container.classList.remove('active');
+                    // 显示头部和导航栏
+                    if (header) header.style.display = '';
+                    if (nav) nav.style.display = '';
+                    // 恢复页面滚动
+                    document.body.style.overflow = '';
+                }
+            });
 
             // 导航按钮事件
             this.navButtons.forEach(button => {
@@ -344,6 +375,24 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             // 借用返回首页按钮的形式，免费咨询按钮取消自定义页面头部等元素
+            document.querySelectorAll('.qwer-packages-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.showSection('home', 'right');
+                    
+                    // 在showSection完成后恢复位置
+                    setTimeout(() => {
+                        if (homeScrollPosition > 0) {
+                            window.scrollTo({
+                                top: homeScrollPosition,
+                                behavior: 'smooth'
+                            });
+                            homeScrollPosition = 0; // 使用后重置
+                        }
+                    }, 200);
+                });
+            });
+
             document.querySelectorAll('.view-packages-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.preventDefault();

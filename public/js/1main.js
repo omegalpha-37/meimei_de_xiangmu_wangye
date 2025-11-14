@@ -264,6 +264,41 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         bindEvents() {
+
+            // 添加到main.js的bindEvents方法中
+            // 服务套餐容器控制
+            document.querySelector('.view-packages-btn')?.addEventListener('click', () => {
+                const container = document.querySelector('.service-package-container');
+                const header = document.querySelector('header');
+                const nav = document.querySelector('nav');
+    
+                if (container) {
+                    container.classList.add('active');
+                    // 隐藏头部和导航栏
+                    if (header) header.style.display = 'none';
+                    if (nav) nav.style.display = 'none';
+                    // 阻止页面滚动
+                    document.body.style.overflow = 'hidden';
+                }   
+            });
+
+            // 关闭套餐容器
+            document.querySelector('.close-package-btn')?.addEventListener('click', () => {
+                const container = document.querySelector('.service-package-container');
+                const header = document.querySelector('header');
+                const nav = document.querySelector('nav');
+                
+                if (container) {
+                    container.classList.remove('active');
+                    // 显示头部和导航栏
+                    if (header) header.style.display = '';
+                    if (nav) nav.style.display = '';
+                    // 恢复页面滚动
+                    document.body.style.overflow = '';
+                }
+            });
+
+
             // 导航按钮事件
             this.navButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -308,6 +343,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.showSection('plant-combinations', 'left');
             });
             
+            // 借用返回首页按钮的形式，免费咨询按钮取消自定义页面头部等元素
+            document.querySelectorAll('.view-packages-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    this.showSection('home', 'right');
+                    
+                    // 在showSection完成后恢复位置
+                    setTimeout(() => {
+                        if (homeScrollPosition > 0) {
+                            window.scrollTo({
+                                top: homeScrollPosition,
+                                behavior: 'smooth'
+                            });
+                            homeScrollPosition = 0; // 使用后重置
+                        }
+                    }, 200);
+                });
+            });
+
+            
+            // 套餐快速跳转功能
+            document.querySelectorAll('.jump-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.getAttribute('data-target');
+                    const targetElement = document.getElementById(targetId);
+                
+                    if (targetElement) {
+                        // 平滑滚动到目标套餐
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+            
+                        // 高亮显示目标套餐（3秒后移除高亮）
+                        targetElement.classList.add('highlight');
+                        setTimeout(() => {
+                            targetElement.classList.remove('highlight');
+                        }, 3000);
+                    }
+                });
+            });
+
             // 返回首页按钮 - 使用保存的位置
             document.querySelectorAll('.back-to-home-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {

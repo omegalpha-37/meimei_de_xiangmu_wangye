@@ -710,6 +710,138 @@
             margin: 0 !important;
         }
     }
+
+    /* 服务套餐容器样式 */
+    .service-package-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: white;
+        z-index: 9999;
+        transform: translateY(100%);
+        transition: transform 0.5s ease;
+        overflow-y: auto;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .service-package-container.active {
+        transform: translateY(0);
+    }
+
+    /* 容器头部样式 */
+    .package-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 2px solid #e9f4ec;
+        margin-bottom: 30px;
+    }
+
+    .package-header h2 {
+        color: #2d5e3b;
+        margin: 0;
+        font-size: 28px;
+    }
+
+    /* 关闭按钮样式 */
+    .close-package-btn {
+        background-color: #a8d5ba;
+        color: #2d5e3b;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .close-package-btn:hover {
+        background-color: #8bc4a1;
+    }
+
+    /* 套餐卡片样式 */
+    .package-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .package-card {
+        border: 1px solid #e9f4ec;
+        border-radius: 10px;
+        padding: 30px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: transform 0.3s;
+    }
+
+    .package-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .package-card h3 {
+        color: #2d5e3b;
+        margin-top: 0;
+        border-bottom: 1px solid #e9f4ec;
+        padding-bottom: 15px;
+    }
+
+    .package-price {
+        font-size: 16px;
+        color: #2d5e3b;
+        font-weight: bold;
+        margin: 20px 0;
+    }
+
+    .package-features {
+        list-style: none;
+        padding: 0;
+        margin: 20px 0;
+    }
+    
+    .package-features li {
+        padding: 5px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .package-features li:before {
+        content: "✓";
+        color: #2d5e3b;
+        margin-right: 10px;
+    }
+
+    /* 添加到style.css */
+    .package-nav-buttons {
+        display: flex;
+        gap: 10px;
+    }
+
+    .jump-btn {
+        background-color: #2d5e3b;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .jump-btn:hover {
+        background-color: #1a3d26;
+    }
+
+    /* 为被定位的套餐添加高亮效果 */
+    .package-card:target {
+        border-color: #2d5e3b;
+        box-shadow: 0 5px 20px rgba(45, 94, 59, 0.15);
+    }
     
     /* ========== 其余通用样式 ========== */
     .btn {

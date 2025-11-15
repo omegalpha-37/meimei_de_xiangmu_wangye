@@ -1,6 +1,6 @@
 [build]
   command = "npm install && npm run build"  # 或 "yarn install"
-  publish = "."       
+  publish = "public"       
 
 [functions]
   directory = "functions"

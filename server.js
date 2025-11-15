@@ -35,7 +35,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // 静态文件服务
-app.use(express.static(path.join(__dirname, 'public')))//, {index: false}));
+app.use(express.static(path.join(__dirname, 'public'), {
+    index: 'index1.html'
+}))//, {index: false}));
 
 // 路由挂载
 app.use('/api/auth', require('./routes/auth'));

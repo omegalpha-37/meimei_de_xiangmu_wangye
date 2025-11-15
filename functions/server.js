@@ -35,18 +35,23 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // 静态文件服务
-app.use(express.static(path.join(__dirname, '../public'), {
+app.use(express.static(path.join(process.cwd(), 'public'), { index: 'index1.html' }))
+/*app.use(express.static(path.join(__dirname, '../public'), {
     index:'index1.html'
-}))//, {index: false}));
+}))//, {index: false}));*/
 
 // 路由挂载
-app.use('/api/auth', require('../routes/auth'));
+app.use('/api/auth', require(path.join(process.cwd(), 'routes/auth')));
+app.use('/api/authMiddleware', require(path.join(process.cwd(), 'routes/authMiddleware')));
+app.use('/api/comments', require(path.join(process.cwd(), 'routes/comments')));
+/*app.use('/api/auth', require('../routes/auth'));
 app.use('/api/authMiddleware', require('../routes/authMiddleware'));
-app.use('/api/comments', require('../routes/comments'));
+app.use('/api/comments', require('../routes/comments'));*/
 
 // 提供前端页面
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public', 'index1.html'));
+    //res.sendFile(path.join(__dirname, '../public', 'index1.html'));
+    res.sendFile(path.join(process.cwd(), 'public', 'index1.html'));
 });
 
 // 捕获所有其他路由
@@ -54,7 +59,8 @@ app.get('*', (req, res) => {
     if (req.path.startsWith('/api/')) {
         return res.status(404).json({ error: 'API 端点不存在' });
     }
-    res.sendFile(path.join(__dirname, '../public', 'index1.html'));
+    //res.sendFile(path.join(__dirname, '../public', 'index1.html'));
+    res.sendFile(path.join(process.cwd(), 'public', 'index1.html'));
 });
 
 // 错误处理中间件

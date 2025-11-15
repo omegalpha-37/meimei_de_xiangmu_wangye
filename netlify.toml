@@ -3,6 +3,7 @@
   publish = "."       
 
 [functions]
+  directory = "."
 
 [[redirects]]
   from = "/api/*"

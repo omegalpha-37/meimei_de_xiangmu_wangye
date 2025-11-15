@@ -6,6 +6,6 @@
   directory = "."
 
 [[redirects]]
-  from = "/api/*"
+  from = "/*"
   to = "/.netlify/functions/server/:splat"
   status = 200

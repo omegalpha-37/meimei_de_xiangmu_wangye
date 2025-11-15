@@ -5,7 +5,7 @@
   "": "===vercel服务器将server.js改为index.js===",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node functions/server.js",
     "dev": "node server.js",
     "build": "echo 'No build step needed' && exit 0"
   },

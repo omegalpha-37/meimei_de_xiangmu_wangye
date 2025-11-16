@@ -40,9 +40,9 @@ app.use(express.static(path.join(__dirname, '../public'), {
 }))//, {index: false}));
 
 // 路由挂载
-app.use('/api/auth', require(path.join(__dirname, '../routes/auth')));
-app.use('/api/authMiddleware', require(path.join(__dirname, '../routes/authMiddleware')));
-app.use('/api/comments', require(path.join(__dirname, '../routes/comments')));
+app.use('/api/auth', require(path.join(__dirname, './routes/auth')));
+app.use('/api/authMiddleware', require(path.join(__dirname, './routes/authMiddleware')));
+app.use('/api/comments', require(path.join(__dirname, './routes/comments')));
 /*app.use('/api/auth', require('../routes/auth'));
 app.use('/api/authMiddleware', require('../routes/authMiddleware'));
 app.use('/api/comments', require('../routes/comments'));*/

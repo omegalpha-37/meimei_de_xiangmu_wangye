@@ -1,4 +1,4 @@
-// server.js - 位于项目根目录
+// server.js - 位于项目functions
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
@@ -40,12 +40,12 @@ app.use(express.static(path.join(__dirname, '../public'), {
 }))//, {index: false}));
 
 // 路由挂载
-app.use('/api/auth', require(path.join(__dirname, './routes/auth')));
+/*app.use('/api/auth', require(path.join(__dirname, './routes/auth')));
 app.use('/api/authMiddleware', require(path.join(__dirname, './routes/authMiddleware')));
-app.use('/api/comments', require(path.join(__dirname, './routes/comments')));
-/*app.use('/api/auth', require('../routes/auth'));
-app.use('/api/authMiddleware', require('../routes/authMiddleware'));
-app.use('/api/comments', require('../routes/comments'));*/
+app.use('/api/comments', require(path.join(__dirname, './routes/comments')));*/
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/authMiddleware', require('./routes/authMiddleware'));
+app.use('/api/comments', require('./routes/comments'));
 
 // 提供前端页面
 app.get('/', (req, res) => {

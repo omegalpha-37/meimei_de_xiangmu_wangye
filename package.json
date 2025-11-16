@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node functions/server.js",
-    "dev": "node server.js",
+    "dev": "node functions/server.js",
     "build": "echo 'No build step needed' && exit 0"
   },
   "dependencies": {

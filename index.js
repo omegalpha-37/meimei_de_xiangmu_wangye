@@ -11,6 +11,7 @@ require('dotenv').config();
 app.use((req, res, next) => {
     // 根据环境动态设置允许的源
     const allowedOrigins = [
+        'https://aaaoooaaaooo.netlify.app',
         'https://meimei-de-xiangmu-wangye.vercel.app',
         'http://localhost:3000'
     ];

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const supabase = require('../routes/supabaseClient');
+const supabase = require('./routes/supabaseClient');
 
 // 注册
 router.post('/register', async (req, res) => {

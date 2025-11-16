@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "植拼物语网站后端",
   "": "===vercel服务器将server.js改为index.js===",
-  "main": "server.js",
+  "main": "functions/server.js",
   "scripts": {
-    "start": "node functions/server.js",
-    "dev": "node functions/server.js",
+    "start": "node index.js",
+    "dev": "node index.js",
     "build": "echo 'No build step needed' && exit 0"
   },
   "dependencies": {

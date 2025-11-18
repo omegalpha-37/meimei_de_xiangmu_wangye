@@ -282,7 +282,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 }   
             });
 
-            // 关闭套餐容器
+            // 由安装服务卡链接至应用服务页面
+            // 注意！！！！需要调整在手机端的显示，会弹出服务套餐详情页面；！！！！！
+            // ！！！服务套餐详情页面有bug！！！looklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklooklook
+            document.getElementById('installation-service-btn')?.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.showSection('applications', 'left');
+                // 添加滚动逻辑
+                setTimeout(() => {
+                const applicationsSection = document.getElementById('applications');
+                    if (applicationsSection) {
+                        const scrollPosition = applicationsSection.offsetTop - 50;
+                        window.scrollTo({
+                            top: scrollPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 500); // 延迟500ms确保页面切换动画完成
+            });
+
+            // 关闭服务套餐容器
             document.querySelector('.close-package-btn')?.addEventListener('click', () => {
                 const container = document.querySelector('.service-package-container');
                 const header = document.querySelector('header');
@@ -295,12 +314,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (nav) nav.style.display = '';
                     // 恢复页面滚动
                     document.body.style.overflow = '';
+                    this.showSection('value-added', 'right');
                 }
             });
 
             //售后保障页面
             document.querySelector('.qwer-packages-btn')?.addEventListener('click', () => {
-                const container = document.querySelector('.baozhang-package-container');
+                const container = document.querySelector('.bz-packageee-container');
                 const header = document.querySelector('header');
                 const nav = document.querySelector('nav');
     
@@ -315,8 +335,8 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             // 关闭套餐容器
-            document.querySelector('.close-package-btn')?.addEventListener('click', () => {
-                const container = document.querySelector('.bz-package-container');
+            document.querySelector('.close-packageee-btn')?.addEventListener('click', () => {
+                const container = document.querySelector('.bz-packageee-container');
                 const header = document.querySelector('header');
                 const nav = document.querySelector('nav');
                 
@@ -327,6 +347,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (nav) nav.style.display = '';
                     // 恢复页面滚动
                     document.body.style.overflow = '';
+                    this.showSection('value-added', 'right');
                 }
             });
 

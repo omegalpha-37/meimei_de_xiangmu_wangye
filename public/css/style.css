@@ -840,7 +840,7 @@
     /* 为被定位的套餐添加高亮效果 */
     .package-card:target {
         border-color: #2d5e3b;
-        box-shadow: 0 5px 20px rgba(45, 94, 59, 0.15);
+        box-shadow: 0 5px 20px rgba(45, 94, 59, 0.35);
     }
 
     /* 服务保障容器样式 */
@@ -972,7 +972,49 @@
     /* 为被定位的套餐添加高亮效果 */
     .packageee-card:target {
         border-color: #2d5e3b;
-        box-shadow: 0 5px 20px rgba(45, 94, 59, 0.15);
+        box-shadow: 0 5px 20px rgba(45, 94, 59, 0.35);
+    }
+
+    /* 质保期限表格样式 */
+    .warranty-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15px 0;
+        font-size: 14px;
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .warranty-table th,
+    .warranty-table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #e9f4ec;
+    }
+
+    .warranty-table th {
+        background-color: #a8d5ba;
+        color: #2d5e3b;
+        font-weight: bold;
+    }
+
+    .warranty-table tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+
+    .warranty-table tr:hover {
+        background-color: #e9f4ec;
+    }
+
+    /* 响应式表格样式 */
+    @media (max-width: 768px) {
+        .warranty-table {
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
     }
     
     /* ========== 其余通用样式 ========== */
@@ -1127,6 +1169,16 @@
 			height: 450px;
 			scroll-snap-align: start;
 		}
+
+        /* 隐藏产品应用页的目录 */
+        .applications-sidebar {
+            display: none;
+        }
+    
+        /* 调整内容区域以占据整个宽度 */
+        .applications-content {
+            width: 100%;
+        }
 		
 		.product-features {
 			justify-content: flex-start;

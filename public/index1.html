@@ -324,7 +324,7 @@
                     <h3>🔧 安装服务类</h3>
                     <p>提供专业的支撑结构安装、灌溉系统配置和植物移植服务，确保每个环节精准到位，打造安全稳固的垂直绿化景观。</p>
                     <!--a href="#" class="btn">了解详情</a-->
-                    <a href="#" class="btn">了解详情->前往->产品应用页</a>
+                    <a href="#" id="installation-service-btn" class="btn">了解详情</a>
                 </div>
                 
                 <!-- 个性化设计 -->
@@ -339,7 +339,7 @@
                 <div class="card">
                     <h3>🛡️ 售后保障类</h3>
                     <p>完善的售后服务体系，包括定期养护指导、系统维护支持和植物更换服务，确保您的绿化景观长期保持最佳状态。</p>
-                    <button class="btn qwer-packages-btn">查看服务</a>
+                    <button class="btn qwer-packages-btn">查看服务</button>
                 </div>
             </div>
             
@@ -383,7 +383,7 @@
                     <li>植物配置：</li>
                     <p style="font-size: 12px;">
                         1、情感疗愈：苔藓、蕨类等低饱和度植物，搭配基础柔和壁灯<br>
-                        2、社交聚会：小型互补色植物组合（如白色茉莉 + 浅紫薰衣草) <br>
+                        2、社交聚会：小型互补色植物组合（如白色茉莉 + 浅紫薰衣草）<br>
                         3、亲子互动：含羞草、薄荷等易养护互动植物<br>
                         4、烹饪使用：2-3 种易存活香草植物（薄荷、小葱、香菜），设计在操作台附近（均采用壁挂式花盆种植，不占桌面空间）<br>
                     </p>
@@ -642,47 +642,158 @@
     <div class="bz-packageee-container">
         <div class="packageee-header">
             <h2>服务保障详情</h2>
-            <!--button class="jump-btn" data-target="aaaaaaa">基础套餐类型</button>
-            <button class="jump-btn" data-target="bbbbbbb">增值服务类型</button-->
-            <button class="close-package-btn">关闭</button>
+            <button class="jump-btn" data-target="aaaa">全流程服务保障</button>
+            <button class="jump-btn" data-target="bbbb">产品保修规则</button>
+            <button class="close-packageee-btn">关闭</button>
         </div>
     
         <div class="packageee-cards">
-            <div class="packageee-card" id="aaaaaaa">
-                <h3>基础套餐类型-小户型基础包</h3>
-                <div class="packageee-price">单价（每平米 / 年）：1599 元</div>
-                <div class="packageee-price">适配面积范围：1-3㎡，更适合阳台、卧室、厨房小区域的服务套餐~</div>
-                <p>核心配置如下：</p>
-                <ul class="packageee-features">
-                    <li>植物配置：</li>
-                    <p style="font-size: 12px;">
-                        1、情感疗愈：苔藓、蕨类等低饱和度植物，搭配基础柔和壁灯<br>
-                        2、社交聚会：小型互补色植物组合（如白色茉莉 + 浅紫薰衣草) <br>
-                        3、亲子互动：含羞草、薄荷等易养护互动植物<br>
-                        4、烹饪使用：2-3 种易存活香草植物（薄荷、小葱、香菜），设计在操作台附近（均采用壁挂式花盆种植，不占桌面空间）<br>
-                    </p>
-                    <li>基础安装</li>
-                    <p style="font-size: 12px;">
-                        轻量化承重底座（含加固结构）+ 手动灌溉系统；
-                    </p>
-                    <li>场景设计</li>
-                    <p style="font-size: 12px;">
-                        对应需求的基础布局（如亲子区预留小黑板位置）；
-                    </p>
-                    <li>套餐内服务</li>
-                    <p style="font-size: 12px;">
-                        1、免费上门测量（限同城）<br>
-                        2、线上养护咨询（24 小时响应）<br>
-                        3、年度 1 次基础焕新（植物 / 灯光小调整）<br>
-                    </p>
-                    <li>基础权益（精简版）</li>
-                    <p style="font-size: 12px;">
-                        7 天植物存活保障（死亡免费更换）
-                    </p>
+            <div class="packageee-card" id="aaaa">
+                <h3>安装服务</h3>
+                <!--div class="packageee-price">这是绿色字体</div-->
+                <ul class="packageee-features"><!--这是打勾段落-->
+                    <li>所有基础套餐内均含免费上门安装，安装前先进行墙体承重检测</li>
+                    <li>10㎡以内：7天内完成（含承重结构搭建、植物种植、系统调试）</li><!---->
+                    <li>11-20㎡：14天内完成（分阶段施工，避免影响家庭生活）</li>
+                    <li>安装过程做好地面 / 墙面保护，施工后清理所有工具与废料，保持家庭整洁</li>
                 </ul>
-                <button class="btn">选择此套餐</button>
+            </div>
+            <div class="packageee-card">
+                <h3>养护服务</h3>
+                <ul class="packageee-features">
+                    <li>基础套餐内含线上咨询（小户型 24 小时响应、大户型专属客服群 1 小时响应等），增值套餐根据类型提供上门养护（如亲子包的季度种植课、烹饪包的月度食材补充、茶室包的季度轻养护）</li>
+                </ul>
+            </div>
+            <div class="packageee-card">
+                <h3>售后保障</h3>
+                <ul class="packageee-features">
+                    <li>植物枯萎 / 病虫害 48 小时内免费更换（烹饪包香草植物优先补充高频使用品类），安装后 30 天内不满意可免费调整 1 次；基础权益的 7 天植物存活保障，覆盖交付初期非人为死亡更换需求</li>
+                </ul>
+            </div>
+
+            <div class="packageee-card">
+                <h3>续约优惠</h3>
+                <ul class="packageee-features">
+                    <li>服务到期前 15 天提醒，续约可享 9 折优惠，同时赠送 1 次对应增值服务（如疗愈包赠 1 次灯串升级、茶室包赠 1 次茶席搭配指导）</li>
+                </ul>
+            </div>
+
+            <div class="packageee-card">
+                <h3>权益划分</h3>
+                <ul class="packageee-features">
+                    <li>将基础服务套餐体系表中各基础包的 “基础权益” 精简为仅 7 天植物存活保障，原剩余服务纳入 “核心配置” 作为套餐内服务，明确基础权益与套餐内服务的区别，方便用户快速识别核心保障与附加服务</li>
+                </ul>
+            </div>
+
+            <div class="packageee-card">
+                <h3>定期专业维护</h3>
+                <ul class="packageee-features">
+                    <li>对于短期的活动周期，在活动现场配备专业专门的技术人员进行维护更换，保障打卡点视觉完美。</li>
+                    <li>对于较为长期的商业展览，采取周期性的维护检修，定时派遣技术人员对植物墙进行维护更换，保证在展览期间内植物的状态整体达到预期效果</li>
+                    <li>面对家庭端用户，采取核心模块集成养护功能，当出现自然损耗时，核心模块集成养护提醒功能，确保家居景观长久如新</li>
+                </ul>
+            </div>
+
+            <div class="packageee-card">
+                <h3>一对一客服服务</h3>
+                <ul class="packageee-features">
+                    <li>没什么好讲的，一对一的含金量你懂吧，别累坏我们</li>
+                </ul>
+            </div>
+
+            <div class="packageee-card">
+                <h3>产品可视化</h3>
+                <ul class="packageee-features">
+                    <li>没什么好讲的，可视化的含金量你懂吧，买之前就能看到效果，不会被骗了</li>
+                </ul>
             </div>
         </div>
+            <!--移除网格布局-->
+            <div class="warranty-section">
+                <div class="packageee-price" id="bbbb">
+                    <p style="font-size: 32px;">产品保修规则</p>
+                </div>
+                <div class="packageee-price">
+                    <h3>1.注意事项</h3>
+                </div>
+                <ul class="packageee-features">
+                    <li>请妥善保管保修卡，连同购货发票一起作为产品保修凭证</li>
+                    <li>本产品自购买之日起，在“三包”期内未经擅自拆修，因产品质量问题引起的故障，经客户服务部或特约维修部鉴定，可凭保修卡及购货发票，参照国经贸《部分商品修理更换退货责任规定》《“新三包”规定》为用户办理保修</li>
+                    <li>不在保修范围内的若干情况:<br></li>                            
+                        <p>
+                            a.用户因运输、使用、维护、保管不当;<br>
+                            b.由非承担“三包”修理者拆修造成损坏的;<br>
+                            c.无保修卡及有效发票的;<br>
+                            d.保修卡型号与产品型号不符或涂改的;<br>
+                            e.因不可抗拒力造成损坏的。<br>
+                        </p>
+                </ul>
+                <div class="packageee-price">
+                    <h3>2.保修期界定</h3>
+                </div>
+                <ul class="packageee-features">
+                    <li>本规则适用于本公司设计、安装并交付的植物墙项目，自项目验收合格并签署《植物墙验收确认单》次日起生效</li>
+                </ul>
+                <div class="packageee-price">
+                    <h3>3.免费保修条件</h3>
+                </div>
+                <ul class="packageee-features">
+                    <li>凡购买绿墙艺创绿植墙系列产品并已在我公司保修登记手续的用户</li>
+                    <li>持有效保修凭证（保修卡），且报修产品的名称、型号、条码与保修卡一致;若无法提供有效保修凭证(保修卡)，则保修起止日期以系统记录为准</li>
+                    <li>必须在保修期内</li>
+                    <li>非人为因素造成故障</li>
+                </ul>
+                <div class="packageee-price">
+                    <h3>4.质保范围和期限</h3>
+                </div>
+                <ul class="packageee-features">
+                    <li>质保内容</li>
+                    <p>
+                        a.植物存活（成活率≥98%，单月死亡率≤5%）：验收合格后，因初始种植基质质量问题或适配性不足导致的植物批量死亡，30日内月死亡率≥5%。<br>
+                        b.配套设备（灌溉设备、照明设备、支撑框架）正常运行：灌溉系统、照明系统、支撑框架因产品本身质量缺陷或施工安装失误出现的故障。<br>
+                        c.结构部分：因施工工艺问题导致的植物墙脱落、基质渗漏等安全隐患。<br>
+                        d.外观效果（无明显空缺、枯叶、病虫害扩散）<br>
+                    </p>
+                    <li>质保期限</li>
+                    <table class="warranty-table">
+                        <thead>
+                            <tr>
+                                <th>部件类型</th>
+                                <th>说明</th>
+                                <th>质保期</th>
+                                <th>保修方式</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>植物</td>
+                                <td>根据所购买服务套餐不同保修期不同</td>
+                                <td>30天/60天/90天/一年</td>
+                                <td>上门维修</td>
+                            </tr>
+                            <tr>
+                                <td>主要部件</td>
+                                <td>灌溉设备；支撑框架；底座；照明系统；传感器等</td>
+                                <td>一年</td>
+                                <td>\</td>
+                            </tr>
+                            <tr>
+                                <td>辅件</td>
+                                <td>随机资料：如包装盒，说明书，小黑板、尺子、卡片类</td>
+                                <td>0</td>
+                                <td>不适用</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </ul>
+                <div class="packageee-price">
+                    <h3>5.保修起止日期</h3>
+                </div>
+                <ul class="packageee-features">
+                    <li>保修期起止日期以有效购货发票为准，如无法提供购货发票，则保修起止日期以系统记录为准。</li>
+                </ul>
+
+            </div>
     </div>
 
 	<!-- 产品中心内容 -->

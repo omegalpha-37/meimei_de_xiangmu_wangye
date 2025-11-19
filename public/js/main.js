@@ -822,6 +822,145 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    // 为产品应用页面目录添加平滑滚动效果
+    function setupSmoothScrolling() {
+        // 获取产品服务页面目录中的所有锚点链接
+        const sidebarLinks = document.querySelectorAll('.applications-sidebar a[href^="#"]');
+    
+        // 为每个锚点链接添加点击事件监听器
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // 阻止默认的锚点跳转行为，避免直接跳动
+                e.preventDefault();
+            
+                // 获取目标元素的ID
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // 如果目标元素存在，则进行平滑滚动
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100, // 减去100px的偏移量，避免被顶部导航栏遮挡
+                        behavior: 'smooth' // 平滑滚动效果
+                    });
+                
+                    // 高亮当前选中的链接
+                    sidebarLinks.forEach(el => el.classList.remove('active'));
+                    this.classList.add('active');
+                }   
+            });
+        });
+    }
+
+    // 为植物卡片添加全屏扩展功能
+function setupPlantCardExpansion() {
+    // 创建背景遮罩元素
+    let overlay = document.createElement('div');
+    overlay.className = 'card-overlay';
+    document.body.appendChild(overlay);
+    
+    // 为所有"查看详情"按钮添加点击事件
+    const detailButtons = document.querySelectorAll('.plant-card .btn');
+    detailButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const plantCard = this.closest('.plant-card');
+            const isFullscreen = plantCard.classList.contains('fullscreen');
+            
+            if (!isFullscreen) {
+                // 扩展到全屏前：隐藏简洁描述，显示详细描述
+                const briefDescriptions = plantCard.querySelectorAll('p:not(:first-of-type)');
+                briefDescriptions.forEach(p => p.style.display = 'none');
+                
+                const detailedDescription = plantCard.querySelector('.detailed-description');
+                if (detailedDescription) detailedDescription.style.display = 'block';
+                
+                // 扩展到全屏
+                plantCard.classList.add('fullscreen');
+                overlay.classList.add('active');
+                this.textContent = '还原';
+                document.body.style.overflow = 'hidden'; // 防止背景滚动
+                
+                // 暂时禁用其他卡片的交互
+                const otherCards = document.querySelectorAll('.plant-card:not(.fullscreen)');
+                otherCards.forEach(card => {
+                    card.style.opacity = '0.3';
+                    card.style.pointerEvents = 'none';
+                });
+            } else {
+                // 还原前：隐藏详细描述，显示简洁描述
+                const briefDescriptions = plantCard.querySelectorAll('p:not(:first-of-type)');
+                briefDescriptions.forEach(p => p.style.display = 'block');
+                
+                const detailedDescription = plantCard.querySelector('.detailed-description');
+                if (detailedDescription) detailedDescription.style.display = 'none';
+                
+                // 还原到正常大小
+                plantCard.classList.remove('fullscreen');
+                overlay.classList.remove('active');
+                this.textContent = '查看详情';
+                document.body.style.overflow = '';
+                
+                // 恢复其他卡片的交互
+                const otherCards = document.querySelectorAll('.plant-card');
+                otherCards.forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.pointerEvents = '';
+                });
+            }
+        });
+    });
+    
+    
+    // 点击遮罩也可以关闭全屏卡片
+    overlay.addEventListener('click', function() {
+        const fullscreenCards = document.querySelectorAll('.plant-card.fullscreen');
+        fullscreenCards.forEach(card => {
+            // 还原前：隐藏详细描述，显示简洁描述
+            const briefDescriptions = card.querySelectorAll('p:not(:first-of-type)');
+            briefDescriptions.forEach(p => p.style.display = 'block');
+            
+            const detailedDescription = card.querySelector('.detailed-description');
+            if (detailedDescription) detailedDescription.style.display = 'none';
+            
+            // 还原卡片
+            card.classList.remove('fullscreen');
+            overlay.classList.remove('active');
+            const btn = card.querySelector('.btn');
+            if (btn) btn.textContent = '查看详情';
+            document.body.style.overflow = '';
+            
+            // 恢复其他卡片的交互
+            const otherCards = document.querySelectorAll('.plant-card');
+            otherCards.forEach(c => {
+                c.style.opacity = '1';
+                c.style.pointerEvents = '';
+            });
+        });
+    });
+    
+    // 添加ESC键关闭功能
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const fullscreenCards = document.querySelectorAll('.plant-card.fullscreen');
+            if (fullscreenCards.length > 0) {
+                fullscreenCards[0].querySelector('.btn').click();
+            }
+        }
+    });
+}
+
+// 在页面加载完成后初始化植物卡片扩展功能
+window.addEventListener('DOMContentLoaded', function() {
+    if (document.querySelector('#plant-library')) {
+        setupPlantCardExpansion();
+    }
+});
+
+    // 当文档加载完成后执行
+    window.addEventListener('DOMContentLoaded', setupSmoothScrolling);
+
     // 初始化应用
     const pageManager = new PageManager();
 });

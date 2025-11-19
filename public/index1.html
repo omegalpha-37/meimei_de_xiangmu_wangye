@@ -85,9 +85,9 @@
     <!-- 植物图鉴页面 - 独立的全屏页面 -->
     <div id="plant-library" class="page-section fullscreen-page">
         <!-- 自定义头部（只有返回按钮） -->
-        <div class="custom-header" style="background: #2d5e3b; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;">
+        <div class="custom-header" style="background: #2d5e3b;  color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;"> <!-- background-image: url('images/zwtjdhlbj2.jpg'); background-size: cover; background-position: center;  background: #2d5e3b;  color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;" -->
             <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-                <button class="back-to-home-btn" style="background: #a8d5ba; color: #2d5e3b; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                <button class="back-to-home-btn" style="background: #a8d5ba; color: #2d5e3b; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;"><!--</button>"back-to-home-btn" style="background: rgba(255, 255, 255, 0.3); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); color: #2d5e3b; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;"-->
                     ← 返回首页
                 </button>
                 <h2 style="margin: 0; color: white;">植物图鉴</h2>
@@ -119,32 +119,50 @@
                     <!-- 植物1 -->
                     <div class="card plant-card" data-category="indoor">
                         <div class="plant-image">
-                            <!--span>绿萝图片</span-->
-                            <img src="images/ll.jpg" style="width: 80%; height: 80%;">
+                            <span>绿萝图片</span>
+                            <!--img src="images/ll.jpg" style="width: 80%; height: 80%;"-->
                         </div>
                         <h3>绿萝</h3>
                         <p><strong>科属：</strong>天南星科</p>
                         <p><strong>习性：</strong>喜阴湿环境，耐阴性强</p>
                         <p><strong>养护：</strong>每周浇水1-2次，避免阳光直射</p>
+                        <!--隐藏的内容-->
+                        <div class="detailed-description" style="display:none;">
+                            <p><strong>植物简介：</strong>绿萝是非常适合室内养殖的观叶植物，被誉为"天然的空气净化器"，能够有效吸收空气中的甲醛、苯等有害物质。</p>
+                            <p><strong>形态特征：</strong>绿萝为大型常绿藤本植物，茎蔓粗壮，叶片呈心形或卵形，深绿色有光泽，叶面上常有不规则的黄色斑点或条纹。</p>
+                            <p><strong>生长环境：</strong>最适宜的生长温度为15-30℃，喜欢温暖湿润的环境，耐阴性强，但在明亮的散射光下生长更佳。</p>
+                            <p><strong>详细养护：</strong>生长期保持土壤湿润但不过湿，冬季减少浇水。每月可施一次稀释的液体肥料。可经常向叶片喷水，增加空气湿度。</p>
+                            <p><strong>繁殖方法：</strong>绿萝极易繁殖，可采用扦插法，剪取带有气生根的茎段插入水中或湿润土壤中即可生根。</p>
+                            <p><strong>注意事项：</strong>绿萝的汁液含有轻微毒素，应避免接触皮肤和误食，家中有小孩或宠物的需特别注意。</p>
+                        </div>
                         <a href="#" class="btn">查看详情</a>
                     </div>
                     
                     <!-- 植物2 -->
                     <div class="card plant-card" data-category="succulent">
                         <div class="plant-image">
-                            <img src="images/xrz.jpg" style="width: 100%;">
+                            <!--img src="images/xrz.jpg" style="width: 100%;"-->
                         </div>
                         <h3>仙人掌</h3>
                         <p><strong>科属：</strong>仙人掌科</p>
                         <p><strong>习性：</strong>耐旱，喜阳光</p>
                         <p><strong>养护：</strong>少浇水，需要充足阳光</p>
+
+                        <div class="detailed-description" style="display:none;">
+                            <p><strong>植物简介：</strong>仙人掌原产于沙漠地区，是一类形态各异、适应性极强的多肉植物，被誉为"沙漠中的绿色宝石"。</p>
+                            <p><strong>形态特征：</strong>仙人掌通常具有肉质茎，表面覆盖着刺或毛，这些刺实际上是退化的叶子，有助于减少水分蒸发和保护自身。</p>
+                            <p><strong>生长环境：</strong>喜欢温暖干燥、阳光充足的环境，耐旱性极强，适宜生长温度为20-30℃。</p>
+                            <p><strong>详细养护：</strong>浇水要遵循"干透浇透"的原则，冬季几乎不需要浇水。喜欢排水良好的沙质土壤，可使用专门的多肉植物土。</p>
+                            <p><strong>繁殖方法：</strong>可通过播种、扦插或分株繁殖，其中扦插法最为常用，切下的茎段晾干伤口后插入土壤即可生根。</p>
+                            <p><strong>注意事项：</strong>仙人掌的刺可能含有毒素，处理时需小心，避免被刺伤。室内养殖时要确保有充足的阳光照射。</p>
+                        </div>
                         <a href="#" class="btn">查看详情</a>
                     </div>
                     
                     <!-- 植物3 -->
                     <div class="card plant-card" data-category="indoor">
                         <div class="plant-image">
-                            <img src="images/dl.jpg" style="width: 80%; height: 80%;">
+                            <!--img src="images/dl.jpg" style="width: 80%; height: 80%;"-->
                         </div>
                         <h3>吊兰</h3>
                         <p><strong>科属：</strong>百合科</p>
@@ -156,7 +174,7 @@
                     <!-- 植物4 -->
                     <div class="card plant-card" data-category="foliage">
                         <div class="plant-image">
-                            <img src="images/gbz.jpg" style="width: 80%; height: 80%;">
+                            <!--img src="images/gbz.jpg" style="width: 80%; height: 80%;"-->
                         </div>
                         <h3>龟背竹</h3>
                         <p><strong>科属：</strong>天南星科</p>
@@ -168,7 +186,7 @@
                     <!-- 植物5 -->
                     <div class="card plant-card" data-category="succulent">
                         <div class="plant-image">
-                            <img src="images/lh.jpg" style="width: 80%; height: 80%;">
+                            <!--img src="images/lh.jpg" style="width: 80%; height: 80%;"-->
                         </div>
                         <h3>芦荟</h3>
                         <p><strong>科属：</strong>百合科</p>
@@ -180,7 +198,7 @@
                     <!-- 植物6 -->
                     <div class="card plant-card" data-category="indoor">
                         <div class="plant-image">
-                            <img src="images/hpl.jpg" style="width: 80%; height: 80%;">
+                            <!--img src="images/hpl.jpg" style="width: 80%; height: 80%;"-->
                         </div>
                         <h3>虎皮兰</h3>
                         <p><strong>科属：</strong>百合科</p>

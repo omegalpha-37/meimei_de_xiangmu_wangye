@@ -869,10 +869,7 @@ function setupPlantCardExpansion() {
             const isFullscreen = plantCard.classList.contains('fullscreen');
             
             if (!isFullscreen) {
-                // 扩展到全屏前：隐藏简洁描述，显示详细描述
-                const briefDescriptions = plantCard.querySelectorAll('p:not(:first-of-type)');
-                briefDescriptions.forEach(p => p.style.display = 'none');
-                
+                // 扩展到全屏前：显示详细描述
                 const detailedDescription = plantCard.querySelector('.detailed-description');
                 if (detailedDescription) detailedDescription.style.display = 'block';
                 
@@ -890,9 +887,6 @@ function setupPlantCardExpansion() {
                 });
             } else {
                 // 还原前：隐藏详细描述，显示简洁描述
-                const briefDescriptions = plantCard.querySelectorAll('p:not(:first-of-type)');
-                briefDescriptions.forEach(p => p.style.display = 'block');
-                
                 const detailedDescription = plantCard.querySelector('.detailed-description');
                 if (detailedDescription) detailedDescription.style.display = 'none';
                 
@@ -917,10 +911,6 @@ function setupPlantCardExpansion() {
     overlay.addEventListener('click', function() {
         const fullscreenCards = document.querySelectorAll('.plant-card.fullscreen');
         fullscreenCards.forEach(card => {
-            // 还原前：隐藏详细描述，显示简洁描述
-            const briefDescriptions = card.querySelectorAll('p:not(:first-of-type)');
-            briefDescriptions.forEach(p => p.style.display = 'block');
-            
             const detailedDescription = card.querySelector('.detailed-description');
             if (detailedDescription) detailedDescription.style.display = 'none';
             

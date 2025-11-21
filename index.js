@@ -53,9 +53,13 @@ app.post('/api/verify-token', async (req, res) => {
 });*/
 
 // 路由挂载
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/authMiddleware', require('./routes/authMiddleware'));
-app.use('/api/comments', require('./routes/comments'));
+const authRouter = require(path.join(__dirname, 'routes', 'auth'));
+const authMiddlewareRouter = require(path.join(__dirname, 'routes', 'authMiddleware'));
+const commentsRouter = require(path.join(__dirname, 'routes', 'comments'));
+
+app.use('/api/auth', authRouter);
+app.use('/api/authMiddleware', authMiddlewareRouter);
+app.use('/api/comments', commentsRouter);
 
 // 提供前端页面 - 现在指向 public/index1.html
 app.get('/', (req, res) => {

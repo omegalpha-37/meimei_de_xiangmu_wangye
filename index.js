@@ -4,8 +4,8 @@ const cookieParser = require('cookie-parser'); // 新增：引入cookie解析中
 const path = require('path');
 const app = express();
 require('dotenv').config();
-// 检测环境
-const isNetlify = process.env.NETLIFY === 'true' || process.env.NETLIFY_FUNCTION === 'true';
+// 检测环境用于netlify，暂时放弃
+/*const isNetlify = process.env.NETLIFY === 'true' || process.env.NETLIFY_FUNCTION === 'true';*/
 
 
 // 手动 CORS 中间件
@@ -63,17 +63,11 @@ app.use('/api/comments', commentsRouter);
 
 // 提供前端页面 - 现在指向 public/index1.html
 app.get('/', (req, res) => {
-    if (isNetlify) {
-        // 在Netlify环境中，重定向到CDN上的文件
-        res.redirect('/index1.html');
-    } else {
-        // 在Vercel或本地环境
-        try {
-            res.sendFile(path.join(__dirname, 'public', 'index1.html'));
-        } catch (error) {
-            // 如果失败，返回错误信息
-            res.status(500).json({ error: '无法加载页面' });
-        }
+    try {
+        res.sendFile(path.join(__dirname, 'public', 'index1.html'));
+    } catch (error) {
+        // 如果失败，返回错误信息
+        res.status(500).json({ error: '无法加载页面' });
     }
 });
 
@@ -83,15 +77,10 @@ app.get('*', (req, res) => {
     if (req.path.startsWith('/api/')) {
         return res.status(404).json({ error: 'API 端点不存在' });
     }
-    // 前端路由，使用与根路径相同的策略
-    if (isNetlify) {
-        res.redirect('/index1.html');
-    } else {
-        try {
-            res.sendFile(path.join(__dirname, 'public', 'index1.html'));
-        } catch (error) {
-            res.status(500).json({ error: '无法加载页面' });
-        }
+    try {
+        res.sendFile(path.join(__dirname, 'public', 'index1.html'));
+    } catch (error) {
+        res.status(500).json({ error: '无法加载页面' });
     }
 });
 

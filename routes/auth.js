@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const supabase = require('./supabaseClient');
+const path = require('path');
+const supabase = require(path.join(__dirname, 'supabaseClient'));
 
 // 注册
 router.post('/register', async (req, res) => {

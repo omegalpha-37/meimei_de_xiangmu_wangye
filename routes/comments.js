@@ -1,10 +1,11 @@
 // routes/comments.js
 const express = require('express');
 const router = express.Router();
-const requireAuth = require('./authMiddleware');
+const path = require('path');
+const requireAuth = require(path.join(__dirname, 'authMiddleware'));
 
 // 导入 Supabase 客户端
-const supabase = require('./supabaseClient');
+const supabase = require(path.join(__dirname, 'supabaseClient'));
 
 // 获取最新评论（限制数量）
 router.get('/latest', async (req, res) => {

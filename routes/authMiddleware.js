@@ -1,4 +1,5 @@
-const supabase = require('./supabaseClient'); // 复用已配置的supabase客户端（包含环境变量）
+const path = require('path');
+const supabase = require(path.join(__dirname, 'supabaseClient')); // 复用已配置的supabase客户端（包含环境变量）
 
 // 认证中间件：验证用户是否登录
 const requireAuth = async (req, res, next) => {

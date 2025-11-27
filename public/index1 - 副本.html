@@ -12,42 +12,15 @@
     <div class="marker"></div>
     <!-- 头部 -->
     <header>
-
-        <!-- 右侧边栏 -->
-        <div class="right-sidebar">
-            <div class="sidebar-content">
-            <!-- 边栏头部 -->
-                <div class="sidebar-header">
-                    <!--h3>快捷操作</h3-->
-                    <button class="sidebar-toggle-btn">≡</button>
-                </div>
-            <!-- 边栏按钮区域 -->
-            <div class="sidebar-buttons">
-                <!-- 默认按钮示例 -->
-                <button class="sidebar-btn login-btn" title="登录">★</button>
-                <!--button class="sidebar-btn" title="分享">↑</button-->
-                <button class="sidebar-btn" title="帮助">?</button>
-                <!-- 这里可以根据需要添加更多按钮 -->
-            </div>
-            <!-- 可折叠面板（用于后续扩展） -->
-            <div class="sidebar-panel">
-                <div class="panel-header">扩展功能</div>
-                    <div class="panel-content">
-                        <!-- 这里可以添加更复杂的内容 -->
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="container header-content">
             <div class="logo">植拼物语</div>
             <div class="search-bar">
                 <input type="text" placeholder="请输入您要搜索的内容">
                 <button>搜索</button>
             </div>
-            <!--div class="auth-buttons">
+            <div class="auth-buttons">
                 <button class="btn login-btn" style="margin-right: 10px;">登录</button>
-            </div-->
+            </div>
         </div>
     </header>
     
@@ -110,7 +83,7 @@
     </div>
     
     <!-- 植物图鉴页面 - 独立的全屏页面 -->
-    <div id="plant-library" class="page-section fullscreen-page" style="background-color: transparent;">
+    <div id="plant-library" class="page-section fullscreen-page">
         <!-- 自定义头部（只有返回按钮） -->
         <div class="custom-header" style="background: #2d5e3b;  color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;"> <!-- background-image: url('images/zwtjdhlbj2.jpg'); background-size: cover; background-position: center;  background: #2d5e3b;  color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;" -->
             <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
@@ -146,8 +119,8 @@
                     <!-- 植物1 -->
                     <div class="card plant-card" data-category="indoor">
                         <div class="plant-image">
-                            <!--span>绿萝图片</span-->
-                            <img src="images/ll.jpg" style="width: 75%; height: 85%;">
+                            <span>绿萝图片</span>
+                            <!--img src="images/ll.jpg" style="width: 80%; height: 80%;"-->
                         </div>
                         <h3>绿萝</h3>
                         <p><strong>科属：</strong>天南星科</p>
@@ -168,7 +141,7 @@
                     <!-- 植物2 -->
                     <div class="card plant-card" data-category="succulent">
                         <div class="plant-image">
-                            <img src="images/xrz.jpg" style="width: 75%; height: 85%;">
+                            <!--img src="images/xrz.jpg" style="width: 100%;"-->
                         </div>
                         <h3>仙人掌</h3>
                         <p><strong>科属：</strong>仙人掌科</p>
@@ -189,7 +162,7 @@
                     <!-- 植物3 -->
                     <div class="card plant-card" data-category="indoor">
                         <div class="plant-image">
-                            <img src="images/dl.jpg" style="width: 75%; height: 85%;">
+                            <!--img src="images/dl.jpg" style="width: 80%; height: 80%;"-->
                         </div>
                         <h3>吊兰</h3>
                         <p><strong>科属：</strong>百合科</p>
@@ -210,7 +183,7 @@
                     <!-- 植物4 -->
                     <div class="card plant-card" data-category="foliage">
                         <div class="plant-image">
-                            <img src="images/gbz.jpg" style="width: 75%; height: 85%;">
+                            <!--img src="images/gbz.jpg" style="width: 80%; height: 80%;"-->
                         </div>
                         <h3>龟背竹</h3>
                         <p><strong>科属：</strong>天南星科</p>
@@ -231,7 +204,7 @@
                     <!-- 植物5 -->
                     <div class="card plant-card" data-category="succulent">
                         <div class="plant-image">
-                            <img src="images/lh.jpg" style="width: 75%; height: 85%;">
+                            <!--img src="images/lh.jpg" style="width: 80%; height: 80%;"-->
                         </div>
                         <h3>芦荟</h3>
                         <p><strong>科属：</strong>百合科</p>
@@ -252,7 +225,7 @@
                     <!-- 植物6 -->
                     <div class="card plant-card" data-category="indoor">
                         <div class="plant-image">
-                            <img src="images/hpl.jpg" style="width: 75%; height: 85%;">
+                            <!--img src="images/hpl.jpg" style="width: 80%; height: 80%;"-->
                         </div>
                         <h3>虎皮兰</h3>
                         <p><strong>科属：</strong>百合科</p>
@@ -275,14 +248,14 @@
     </div>
     
     <!-- 植物组合页面 - 独立的全屏页面 -->
-    <div id="plant-combinations" class="page-section fullscreen-page" style="background-color: transparent;">
+    <div id="plant-combinations" class="page-section fullscreen-page">
         <!-- 自定义头部 -->
         <div class="custom-header" style="background: #2d5e3b; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;">
             <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
                 <button class="back-to-home-btn" style="background: #a8d5ba; color: #2d5e3b; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer; font-weight: bold;">
                     ← 返回首页
                 </button>
-                <h2 style="margin: 0; color: white;">植物没法组合</h2>
+                <h2 style="margin: 0; color: white;">植物组合</h2>
                 <div style="width: 80px;"></div>
             </div>
         </div>
@@ -317,7 +290,7 @@
                         <p><strong>包含植物：</strong>绿萝、吊兰、虎皮兰</p>
                         <p><strong>适用场景：</strong>客厅、卧室、办公室</p>
                         <p><strong>效果：</strong>强力净化空气，增加负氧离子</p>
-                        <a href="#" class="btn">禁止查看详情</a>
+                        <a href="#" class="btn">查看详情</a>
                     </div>
                     
                     <!-- 组合2 -->
@@ -329,7 +302,7 @@
                         <p><strong>包含植物：</strong>多种多肉植物</p>
                         <p><strong>适用场景：</strong>桌面、窗台、书架</p>
                         <p><strong>效果：</strong>小巧精致，易于养护</p>
-                        <a href="#" class="btn">禁止查看详情</a>
+                        <a href="#" class="btn">查看详情</a>
                     </div>
                     
                     <!-- 组合3 -->
@@ -341,7 +314,7 @@
                         <p><strong>包含植物：</strong>月季、薰衣草、迷迭香</p>
                         <p><strong>适用场景：</strong>阳台、露台</p>
                         <p><strong>效果：</strong>花香四溢，美化环境</p>
-                        <a href="#" class="btn">禁止查看详情</a>
+                        <a href="#" class="btn">查看详情</a>
                     </div>
                     
                     <!-- 组合4 -->
@@ -353,7 +326,7 @@
                         <p><strong>包含植物：</strong>仙人掌、芦荟、绿萝</p>
                         <p><strong>适用场景：</strong>办公桌、会议室</p>
                         <p><strong>效果：</strong>缓解眼疲劳，净化空气</p>
-                        <a href="#" class="btn">禁止查看详情</a>
+                        <a href="#" class="btn">查看详情</a>
                     </div>
                 
                     <!-- 组合5 -->
@@ -365,7 +338,7 @@
                         <p><strong>包含植物：</strong>薰衣草、茉莉、芦荟</p>
                         <p><strong>适用场景：</strong>卧室、休息区</p>
                         <p><strong>效果：</strong>促进睡眠，放松心情</p>
-                        <a href="#" class="btn">禁止查看详情</a>
+                        <a href="#" class="btn">查看详情</a>
                     </div>
                 
                     <!-- 组合6 -->
@@ -377,7 +350,7 @@
                         <p><strong>包含植物：</strong>迷迭香、薄荷、罗勒</p>
                         <p><strong>适用场景：</strong>厨房窗台</p>
                         <p><strong>效果：</strong>烹饪调味，清新空气</p>
-                        <a href="#" class="btn">禁止查看详情</a>
+                        <a href="#" class="btn">查看详情</a>
                     </div>
                 </div>
             </div>
@@ -385,7 +358,7 @@
     </div>
     
     <!-- 增值服务页面 -->
-    <div id="value-added" class="page-section fullscreen-page" style="background-color: transparent;">
+    <div id="value-added" class="page-section fullscreen-page">
         <!-- 添加自定义头部 -->
         <div class="custom-header" style="background: #2d5e3b; color: white; padding: 15px 0; position: sticky; top: 0; z-index: 1000;">
             <div class="container" style="display: flex; justify-content: space-between; align-items: center;">

@@ -1,6 +1,25 @@
 document.addEventListener('DOMContentLoaded', function() {
     let homeScrollPosition = 0;
     
+    // 右侧边栏功能
+const rightSidebar = document.querySelector('.right-sidebar');
+const sidebarToggleBtn = document.querySelector('.sidebar-toggle-btn');
+
+// 切换边栏显示/隐藏
+if (sidebarToggleBtn) {
+    sidebarToggleBtn.addEventListener('click', function() {
+        rightSidebar.classList.toggle('expanded');
+        
+        if (rightSidebar.classList.contains('expanded')) {
+            rightSidebar.style.right = '0';
+            rightSidebar.style.width = '200px';
+        } else {
+            rightSidebar.style.right = '-30px';
+            rightSidebar.style.width = '80px';
+        }
+    });
+}
+
     // 认证系统类
     class Auth {
         constructor() {

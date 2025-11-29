@@ -280,6 +280,12 @@ if (sidebarToggleBtn) {
             this.showSection('home', 'none');
             this.updateAuthStatus();
             this.loadComments();
+            // 初始化时默认显示所有植物，确保display属性正确设置
+    if (document.querySelector('#plant-library')) {
+        setTimeout(() => {
+            this.filterPlants('all');
+        }, 100);
+    }
         }
         
         bindEvents() {
@@ -873,6 +879,7 @@ if (sidebarToggleBtn) {
 
     // 为植物卡片添加全屏扩展功能
 function setupPlantCardExpansion() {
+    
     // 创建背景遮罩元素
     let overlay = document.createElement('div');
     overlay.className = 'card-overlay';
